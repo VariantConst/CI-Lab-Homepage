@@ -1,0 +1,78 @@
+---
+const { courseId, name, nameCN, since, term, target } = Astro.props;
+---
+
+<div
+  class="text-sm md:text-md lg:text-lg xl:text-xl flex flex-col border-2 text-center border-gray-200 dark:border-gray-600 rounded-lg p-6 transition-all duration-300 ease-in-out hover:shadow-lg md:p-8"
+>
+  <div class="flex justify-between items-center mb-4">
+    <span class="cursor-pointer flex items-center" title="Course ID">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-5 w-5 mr-1"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"></path>
+      </svg>
+      {courseId}
+    </span>
+    <span class="cursor-pointer flex items-center" title="Year opened">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-5 w-5 mr-1"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+        ></path>
+      </svg>
+      {since}
+    </span>
+  </div>
+  <hr class="border-gray-200 dark:border-gray-600" />
+  <div class="flex-grow flex flex-col justify-center items-center my-6">
+    <h2 class="text-center text-gray-800 dark:text-gray-100 mb-2">
+      {name}
+    </h2>
+    <h3 class="text-center text-gray-600 dark:text-gray-300">
+      {nameCN}
+    </h3>
+  </div>
+  <hr class="border-gray-200 dark:border-gray-600 border-dashed" />
+  <div class="flex justify-center items-center mt-4">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="h-5 w-5 mr-1"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path d="M12 14l9-5-9-5-9 5 9 5z"></path>
+      <path
+        d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"
+      ></path>
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"
+      ></path>
+    </svg>
+    <span class="mild">
+      <span class="text-gray-700 dark:text-gray-200">{term}</span> term for <span
+        class="text-gray-700 dark:text-gray-200">{target}</span
+      > students
+    </span>
+  </div>
+</div>

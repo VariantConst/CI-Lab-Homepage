@@ -1,0 +1,45 @@
+{
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.5.6",
+    "@astrojs/preact": "^3.1.1",
+    "@astrojs/react": "^3.0.10",
+    "@astrojs/tailwind": "^5.1.0",
+    "@astrojs/ts-plugin": "^1.5.3",
+    "@contentful/rich-text-html-renderer": "^16.3.4",
+    "@fontsource/twinkle-star": "^5.0.18",
+    "astro": "^4.4.15",
+    "contentful": "^10.6.22",
+    "preact": "^10.19.6",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.22.2",
+    "react-spring": "^9.7.3",
+    "react-swipeable": "^7.0.1",
+    "react-transition-group": "^4.4.5",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.3.3",
+    "vite": "^5.1.4"
+  },
+  "packageManager": "yarn@4.1.0",
+  "devDependencies": {
+    "@babel/core": "^7.24.0",
+    "@tailwindcss/aspect-ratio": "^0.4.2",
+    "@tailwindcss/forms": "^0.5.7",
+    "@tailwindcss/line-clamp": "^0.4.4",
+    "@tailwindcss/typography": "^0.5.10",
+    "@types/babel__core": "^7",
+    "@types/react": "^18.2.61",
+    "@types/react-dom": "^18.2.19",
+    "@types/react-transition-group": "^4",
+    "@vitejs/plugin-react": "^4.2.1"
+  }
+}

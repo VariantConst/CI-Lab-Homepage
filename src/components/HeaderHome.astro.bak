@@ -1,0 +1,76 @@
+---
+import ThemeIconLight from "./ThemeIconLight.astro";
+
+const navLinks = [
+  { href: "/team", text: "Team" },
+  { href: "/publication", text: "Publication" },
+  { href: "/course", text: "Course" },
+  { href: "/contact", text: "Contact" },
+];
+---
+
+<div
+  class="relative h-auto mb-12 py-32 bg-homepage-background bg-cover bg-center border border-gray-700"
+  style={{ backgroundBlendMode: "multiply" }}
+>
+  <div
+    class="absolute inset-0 bg-gradient-to-r from-[#11262A] to-[#121921] opacity-75 pointer-events-none"
+  >
+  </div>
+  <div class="hover:animate-pulse py-2 flex justify-center relative">
+    <img
+      src="https://images.ctfassets.net/yreyglvi5sud/4usdd18KLnyLugCgzJU4Od/b6534d65f0f472b1904fbbc1e9ed7240/logo_icon.png"
+      alt="Logo"
+      class="h-14 object-contain flex-shrink-0"
+    />
+  </div>
+  <div class="py-2 flex justify-center relative">
+    <img
+      src="https://images.ctfassets.net/yreyglvi5sud/2FfyJoKDLrEiKahNId9HYP/92b25333b58892ce53a55424e31d4aba/lab_name.png"
+      alt="Logo"
+      class="h-14 object-contain flex-shrink-0"
+    />
+  </div>
+  <nav class="py-2 mx-10">
+    <ul class="flex flex-wrap justify-center gap-2 md:gap-4 text-xl">
+      {
+        navLinks.map((link) => (
+          <li>
+            <div class="transition-all duration-300 ease-in-out transform hover:-translate-y-1">
+              <a href={link.href} class="text-gray-200">
+                {link.text}
+              </a>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+
+  <div class="flex items-center justify-center">
+    <ThemeIconLight />
+  </div>
+</div>
+
+<style>
+  .sun {
+    fill: black;
+  }
+  .moon {
+    fill: transparent;
+  }
+
+  :global(.dark) .sun {
+    fill: transparent;
+  }
+  :global(.dark) .moon {
+    fill: rgb(151, 163, 208);
+  }
+
+  :global(.light-theme-icon) .sun {
+    fill: white;
+  }
+  :global(.light-theme-icon) .moon {
+    fill: white;
+  }
+</style>

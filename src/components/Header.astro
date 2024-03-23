@@ -1,0 +1,178 @@
+---
+import { Image } from "astro:assets";
+import ThemeIcon from "./ThemeIcon.astro";
+import AnimatedLink from "../components/utils/AnimatedLink.astro";
+
+const navLinks = [
+  { href: "/", text: "Home" },
+  { href: "/team", text: "Team" },
+  { href: "/publication", text: "Publication" },
+  { href: "/course", text: "Course" },
+  { href: "/contact", text: "Contact" },
+];
+
+const menuItems = [
+  {
+    href: "/",
+    text: "Home",
+    icon: "M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6",
+  },
+  {
+    href: "/team",
+    text: "Team",
+    icon: "M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z",
+  },
+  {
+    href: "/publication",
+    text: "Publication",
+    icon: "M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253",
+  },
+  {
+    href: "/course",
+    text: "Course",
+    icon: "M12 14l9-5-9-5-9 5 9 5z,M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z,M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222",
+  },
+  {
+    href: "/contact",
+    text: "Contact",
+    icon: "M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z",
+  },
+];
+---
+
+<div
+  class="fixed top-0 left-0 right-0 flex justify-between items-center h-20 z-50 bg-white/95 backdrop-blur-md dark:bg-gray-900/95 border-b border-b-gray-200 dark:border-b-gray-700 px-6 sm:px-8"
+>
+  <div class="flex items-center">
+    <div class="p-2">
+      <a href="/" class="flex items-center mr-6">
+        <Image
+          src="https://images.ctfassets.net/yreyglvi5sud/76rDNDg7qtGp2SN5KtQDAl/b3c41d6fc63721596672076cb202e027/_logo_______.png"
+          alt="Logo"
+          class="object-contain dark:hidden min-w-40"
+          width={160}
+          height={40}
+          loading="lazy"
+        />
+        <Image
+          src="https://images.ctfassets.net/yreyglvi5sud/338URIgl2lqTxgplMb5ppN/6e0cf6e2d7b4ee22c4d19ff8c1536b21/logo_full.png"
+          alt="Logo"
+          class="object-contain hidden dark:block min-w-40"
+          width={160}
+          height={40}
+          loading="lazy"
+        />
+      </a>
+    </div>
+    <div id="overlay" class="fixed inset-0 bg-black bg-opacity-30 hidden z-50">
+    </div>
+
+    <div
+      id="sidePanel"
+      class="fixed top-24 right-4 py-4 bg-white dark:bg-gray-900 rounded-3xl shadow-2xl z-40 transform scale-90 origin-top-right transition-transform duration-500 ease-in-out opacity-0 pointer-events-none"
+    >
+      <div class="p-6">
+        <ul class="flex flex-col justify-center gap-6">
+          {
+            menuItems.map((item, index) => (
+              <>
+                {" "}
+                <li class="transform hover:scale-110 transition-transform duration-500">
+                  {" "}
+                  <a
+                    href={item.href}
+                    class={`flex items-center px-4 text-xl tracking-wider font-semibold transition-colors duration-500 ${Astro.url.pathname === item.href ? "text-blue-600" : "text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"}`}
+                  >
+                    {" "}
+                    <svg
+                      class={`w-8 h-8 mr-6 ${Astro.url.pathname === item.href ? "text-blue-600" : "text-blue-500 dark:text-blue-400"}`}
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      {" "}
+                      {item.icon.split(",").map((path) => (
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="1.5"
+                          d={path}
+                        />
+                      ))}{" "}
+                    </svg>{" "}
+                    {item.text}{" "}
+                  </a>{" "}
+                </li>{" "}
+                {index < menuItems.length - 1 && (
+                  <hr class="border-t border-gray-300 dark:border-gray-700" />
+                )}{" "}
+              </>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="flex items-center">
+    <ThemeIcon />
+    <div class="ml-auto sm:hidden flex items-center justify-center">
+      <button id="toggleButton" class="pl-4 pr-2 focus:outline-none">
+        <svg
+          class="w-6 h-6 text-gray-600 dark:text-gray-400"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+            d="M4 6h16M4 12h16m-7 6h7"></path>
+        </svg>
+      </button>
+    </div>
+    <nav
+      class="hidden sm:flex items-center justify-end flex-grow mr-8 font-light tracking-wider"
+    >
+      <ul class="flex justify-center gap-8 text-lg">
+        {
+          navLinks.map((link) => (
+            <li class="flex items-center justify-center">
+              <div class="group relative transition-all duration-500 ease-in-out transform hover:-translate-y-1">
+                <AnimatedLink href={link.href} className="mild">
+                  {link.text}
+                </AnimatedLink>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</div>
+
+<script type="module" is:inline>
+  document.addEventListener("DOMContentLoaded", () => {
+    const toggleButton = document.getElementById("toggleButton");
+    const sidePanel = document.getElementById("sidePanel");
+
+    toggleButton.addEventListener("click", () => {
+      sidePanel.classList.toggle("opacity-0");
+      sidePanel.classList.toggle("pointer-events-none");
+      sidePanel.classList.toggle("scale-100");
+    });
+
+    document.addEventListener("click", (event) => {
+      const isClickInside =
+        sidePanel.contains(event.target) || toggleButton.contains(event.target);
+
+      if (!isClickInside && !sidePanel.classList.contains("opacity-0")) {
+        sidePanel.classList.add("opacity-0");
+        sidePanel.classList.add("pointer-events-none");
+        sidePanel.classList.remove("scale-100");
+      }
+    });
+  });
+</script>

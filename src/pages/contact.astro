@@ -1,0 +1,164 @@
+---
+// Import components and any needed scripts or styles here import BaseLayout
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ImageGallery from "../components/Gallery.jsx";
+import AnimatedLink from "../components/utils/AnimatedLink.astro";
+const contactCardStyle =
+  "flex flex-col justify-between items-center border-2 border-gray-300 dark:border-gray-500 rounded-lg p-6 transition-all duration-300 ease-in-out hover:shadow-lg hover:border-gray-400 dark:hover:border-gray-400";
+---
+
+<BaseLayout>
+  <main class="container mx-auto px-4 py-12 flex flex-col items-center">
+    <ImageGallery client:load />
+    <section class="mb-16">
+      <h2 class="text-4xl font-light mb-12 text-center dark:text-gray-200">
+        Contact Us
+      </h2>
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto"
+      >
+        <div class={contactCardStyle}>
+          <div class="flex items-center mb-4">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6 mr-2 text-gray-600 dark:text-gray-400"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+              ></path>
+            </svg>
+            <h3 class="text-2xl font-light dark:text-gray-200">Email</h3>
+          </div>
+          <div class="flex-grow flex items-center">
+            <p class="mild text-gray-600 dark:text-gray-400 text-center">
+              Check our
+              <AnimatedLink href="/team">Team</AnimatedLink> page<br /><br /> This
+              is the best way to reach us.
+            </p>
+          </div>
+        </div>
+        <div class={contactCardStyle}>
+          <div class="flex items-center mb-4">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6 mr-2 text-gray-600 dark:text-gray-400"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+              ></path>
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            </svg>
+            <h3 class="text-2xl font-light dark:text-gray-200">Address</h3>
+          </div>
+          <div class="flex-grow flex items-center">
+            <p class="mild text-gray-600 dark:text-gray-400 text-center">
+              Room 505/507, Yanyuan Building.<br /> Peking University<br /> No.151
+              Zhongguancun North Street<br /> Haidian district, Beijing, China<br
+              />
+              <strong>Zip code:</strong> 100080
+            </p>
+          </div>
+        </div>
+
+        <div class={contactCardStyle}>
+          <div class="flex items-center mb-4">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6 mr-2 text-gray-600 dark:text-gray-400"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+              ></path>
+            </svg>
+            <h3 class="text-2xl font-light dark:text-gray-200">Phone & Fax</h3>
+          </div>
+          <div class="flex-grow flex items-center">
+            <ul
+              class="space-y-2 mild text-gray-600 dark:text-gray-400 text-center"
+            >
+              <li><strong>Telephone:</strong> +86-10-62758116</li><br />
+              <li><strong>Fax:</strong> +86-10-62751638</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Prospective Students -->
+    <section class="mb-16 max-w-screen-lg">
+      <h2 class="text-4xl font-light mb-6 text-center">Prospective Students</h2>
+      <div class="space-y-6 mild">
+        <p>
+          We are hiring highly motivated students to join our group. Please read
+          the paragraphs below carefully to increase the chance of getting your
+          e-mail replied. Usually, we will reply within three days if we think
+          you are a potential candidate. If you do not receive any reply after
+          one week, please feel free to move forward by contacting other
+          professors.
+        </p>
+        <p>
+          PKU undergraduate students can directly send emails to inquire about
+          research intern position. Please send your CV + transcript and use
+          "CI-UROP-YourName" as subject of your first email. In principle,
+          recommendation letters will only be provided to undergraduate students
+          with 6+ months research experience in our lab to ensure we have
+          something concrete to comment.
+        </p>
+        <p>
+          Our group has opening positions for Ph.D. in each year. The selection
+          is usually during the summer camp of PKU School of CS in July for the
+          next-year fall semester enrollment. Please send your CV + transcript
+          and use "CI-PhD-YourUniversity-YourName" as subject of your first
+          email. In your email, please describe how your research interests
+          match our group instead of simply asking whether there are quotas
+          available.
+        </p>
+        <p>
+          We warmly welcome international students for both Master and Ph.D.
+          study, through our new English degree program in CS (starting from
+          2019). The Elite Ph.D. program provides full scholarship and generous
+          living allowance. Please visit our department <AnimatedLink
+            href="https://cs.pku.edu.cn/English/Admission/Graduate.htm"
+          >
+            website
+          </AnimatedLink> for program details.
+        </p>
+      </div>
+    </section>
+
+    <!-- Prospective Postdocs -->
+    <section class="max-w-screen-lg">
+      <h2 class="text-4xl font-light mb-6 text-center">Prospective Postdocs</h2>
+      <p class="mild">
+        We are hiring highly motivated postdocs to join our group through the <AnimatedLink
+          href="https://postdocs.pku.edu.cn/tzgg/index.htm"
+        >
+          Boya Postdoctoral Fellowship
+        </AnimatedLink> at Peking University. Please send your CV + Research Statement
+        and use "CI-Postdoc-YourUniversity-YourName" as subject of your first email.
+      </p>
+    </section>
+  </main>
+</BaseLayout>

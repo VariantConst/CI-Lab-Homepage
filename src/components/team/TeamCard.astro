@@ -1,0 +1,76 @@
+---
+import { Image } from "astro:assets";
+const { data, level } = Astro.props;
+const containerClasses = level
+  ? `flex flex-col items-center p-0`
+  : "mt-4 text-center";
+---
+
+<div class={containerClasses}>
+  <div class={`flex items-center justify-center`}>
+    {
+      level !== "small" && (
+        <div class="w-full h-full">
+          <div
+            class={`people-portrait group relative hover:cursor-pointer overflow-hidden flex items-center justify-center ${level === "large" ? "rounded-lg" : "rounded-full"} border border-gray-200 dark:border-zinc-700 shadow-lg dark:shadow-zinc-800 `}
+            style={{
+              width: level === "large" ? "200px" : "150px",
+              height: level === "large" ? "300px" : "150px",
+            }}
+          >
+            <Image
+              src={
+                data.image
+                  ? data.image.fields.file.url
+                  : "https://images.ctfassets.net/yreyglvi5sud/4usdd18KLnyLugCgzJU4Od/b6534d65f0f472b1904fbbc1e9ed7240/logo_icon.png"
+              }
+              width={200}
+              height={200}
+              loading="eager"
+              alt={data.name}
+              class={`w-full h-full object-cover transition duration-500 ease-in-out transform group-hover:-translate-y-1 group-hover:scale-110`}
+              style={{ objectFit: "cover" }}
+            />
+            <div class="absolute inset-0 flex items-center justify-center">
+              <div
+                class={`w-[80%] h-[80%] border-2 border-white/30 rounded-full scale-[1.2] opacity-0 group-hover:opacity-100 group-hover:scale-100 transition duration-500 ease-in-out`}
+              />
+            </div>
+          </div>
+        </div>
+      )
+    }
+  </div>
+  {
+    level && data.educationCurrent && data.educationNext ? (
+      <div class="mt-6 text-center">
+        <p
+          class="text-lg sm:text-xl font-semibold tracking-wide text-zinc-700 dark:text-zinc-300"
+          id="data.name"
+        >
+          {data.name} / {data.nameCn}
+        </p>
+        <p class="mt-1 text-sm sm:text-base text-zinc-500 dark:text-zinc-400">
+          {data.educationCurrent}
+        </p>
+        <p class="text-sm sm:text-base text-zinc-500 dark:text-zinc-400">
+          Next: {data.educationNext}
+        </p>
+      </div>
+    ) : level ? (
+      <div class="mt-6 text-center">
+        <p
+          class="text-lg sm:text-xl font-semibold tracking-wide text-zinc-700 dark:text-zinc-300"
+          id="data.name"
+        >
+          {data.name}
+        </p>
+        <p class="mt-1 text-xl sm:text-2xl font-semibold tracking-wide text-zinc-700 dark:text-zinc-300">
+          {data.nameCn}
+        </p>
+      </div>
+    ) : !level ? (
+      <p>Unsupported level</p>
+    ) : null
+  }
+</div>

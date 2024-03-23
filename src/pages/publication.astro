@@ -1,0 +1,15 @@
+---
+// Import components and any needed scripts or styles here
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+import Paper from "../components/publication/Paper.jsx";
+import { fetchData } from "../lib/fetchPublication";
+
+const entries = await fetchData();
+
+// 动态生成会议和数量的字符串
+---
+
+<BaseLayout>
+  <Paper entries={entries} client:load />
+</BaseLayout>

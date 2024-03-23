@@ -1,0 +1,115 @@
+---
+import { Image } from "astro:assets";
+---
+
+<div
+  id="splash-screen"
+  class="fixed top-0 left-0 w-full h-full bg-black flex items-center justify-center z-50 transition-all duration-400"
+>
+  <Image
+    src="https://images.ctfassets.net/yreyglvi5sud/5LcmHPqombOlhDqNbodSnc/bbf3f9c62097cbdf78b939a65dd96db7/background.png"
+    alt="Background"
+    width={400}
+    height={280}
+    class="absolute top-0 left-0 w-full h-full object-cover"
+    loading="lazy"
+  />
+  <div
+    class="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-[#11262A] to-[#121921] opacity-75"
+  >
+  </div>
+  <div class="relative">
+    <div class="py-2 flex justify-center relative mb-8">
+      <Image
+        id="rotatingLogo"
+        src="https://images.ctfassets.net/yreyglvi5sud/5aYRNyVnj6QuiCylFpv4DG/5556a974507171f11b4176a8e904c544/logo_core.png"
+        alt="Logo"
+        width={400}
+        height={280}
+        class="h-28 object-contain flex-shrink-0 animate-rotate-shrink"
+        loading="lazy"
+      />
+      <Image
+        id="expandingLogo"
+        src="https://images.ctfassets.net/yreyglvi5sud/4usdd18KLnyLugCgzJU4Od/b6534d65f0f472b1904fbbc1e9ed7240/logo_icon.png"
+        alt="Logo"
+        width={400}
+        height={280}
+        class="h-28 object-contain flex-shrink-0 animate-expand hidden"
+        loading="lazy"
+      />
+    </div>
+    <div
+      id="textAnimation"
+      class="relative text-white font-bold text-4xl text-center hidden font-sans"
+    >
+      <span class="gradient-text">Camera @ PKU</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  const rotatingLogo = document.getElementById("rotatingLogo");
+  const expandingLogo = document.getElementById("expandingLogo");
+  const textAnimation = document.getElementById("textAnimation");
+
+  rotatingLogo.addEventListener("animationend", () => {
+    rotatingLogo.classList.add("hidden");
+    expandingLogo.classList.remove("hidden");
+    textAnimation.classList.remove("hidden");
+  });
+</script>
+
+<style>
+  .gradient-text {
+    opacity: 0;
+    animation: fadeIn 1s ease-in-out forwards;
+    background: linear-gradient(45deg, #d96262, #eb7d4a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+  }
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  /* 为每个字母设置不同的动画延迟 */
+  :root {
+    --delay: 0s; /* 默认延迟时间 */
+  }
+
+  @keyframes rotateAndShrink {
+    0% {
+      transform: rotate(0deg) scale(0.8);
+    }
+    50% {
+      transform: rotate(180deg) scale(0.5);
+    }
+    100% {
+      transform: rotate(0deg) scale(0.8);
+    }
+  }
+
+  .animate-rotate-shrink {
+    animation: rotateAndShrink 1s ease-in-out;
+  }
+
+  @keyframes expand {
+    0% {
+      transform: scale(0.8);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  .animate-expand {
+    animation: expand 1s ease-in-out;
+  }
+</style>

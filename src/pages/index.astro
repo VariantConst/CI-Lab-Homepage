@@ -1,0 +1,52 @@
+---
+// Import components and any needed scripts or styles here
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SplashScreen from "../components/homepage/SplashScreen.astro";
+import HomepageHero from "../components/homepage/HomepageHero.astro";
+import News from "../components/homepage/News.jsx";
+import WelcomeSection from "../components/homepage/WelcomeSection.jsx";
+
+const newsItems = [
+  {
+    date: "February 27, 2024",
+    title: "13 CVPR papers are accepted",
+    description: "",
+  },
+];
+---
+
+<BaseLayout>
+  <SplashScreen />
+
+  <HomepageHero />
+
+  <main class="flex justify-center items-center">
+    <div class="items-center justify-center mx-auto w-full min-w-full mt-24">
+      <div
+        class="flex flex-col justify-center mx-auto items-center 2xl:flex-row gap-y-24 gap-x-8 py-6 2xl:w-4/5"
+      >
+        <News newsItems={newsItems} client:load />
+        <WelcomeSection client:load />
+      </div>
+    </div>
+  </main>
+</BaseLayout>
+
+<script>
+  window.addEventListener("DOMContentLoaded", function () {
+    const isFirstVisit = localStorage.getItem("isFirstVisit");
+    const splashScreen = document.getElementById("splash-screen");
+
+    if (isFirstVisit === null) {
+      localStorage.setItem("isFirstVisit", "false");
+      setTimeout(function () {
+        splashScreen.style.opacity = "0";
+        setTimeout(function () {
+          splashScreen.style.display = "none";
+        }, 1000);
+      }, 2500);
+    } else {
+      splashScreen.style.display = "none";
+    }
+  });
+</script>

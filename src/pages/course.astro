@@ -1,0 +1,76 @@
+---
+// 导入组件和需要的脚本或样式
+import BaseLayout from "../layouts/BaseLayout.astro";
+import CourseCard from "../components/utils/CourseCard.astro";
+import TalkCard from "../components/utils/TalkCard.astro";
+---
+
+<BaseLayout>
+  <main>
+    <main class="max-w-4xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl font-light tracking-tight mb-8">Courses</h1>
+      <section class="mb-16">
+        <h2 class="text-3xl font-light mb-6">At PKU</h2>
+        <div>
+          <div class="grid grid-cols-1 gap-6 mb-8">
+            <CourseCard
+              courseId="04833970"
+              name="Computational Photography: Image Formation Theory and Deep Learning Practice"
+              nameCN="计算摄像学：成像模型理论与深度学习实践"
+              since="Since 2018"
+              term="Spring"
+              target="undergraduate"
+            />
+
+            <CourseCard
+              courseId="04832580"
+              name="Algorithm Design and Analysis"
+              nameCN="算法设计与分析（研讨型小班）"
+              since="2018 - 2022"
+              term="Spring"
+              target="undergraduate"
+            />
+          </div>
+          <CourseCard
+            courseId="10100004"
+            name="Scientific Writing"
+            nameCN="科技论文写作"
+            since="Since 2024"
+            term="Spring"
+            target="graduate"
+          />
+        </div>
+      </section>
+      <section>
+        <h2 class="text-3xl font-light mb-6">At Conferences</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <TalkCard
+            title="Data-driven Photometric 3D Modeling"
+            conference="SIGGRAPH Asia 2019 Course"
+            link="https://sa2019.siggraph.org/attend/courses/session/23/details/28"
+          />
+
+          <TalkCard
+            title="Photometric 3D Reconstruction"
+            conference="ICIP 2019 Tutorial"
+            link="https://www.dropbox.com/s/bhf2yk71z1q3pei/ICIP2019Tutorial_P3R.pdf?dl=0"
+            note="with Yasuyuki Matsushita and Michael Weachter"
+          />
+
+          <TalkCard
+            title="计算机视觉会议论文从投稿到接收"
+            conference="20200317 智源论坛"
+            link="https://www.bilibili.com/video/BV1n7411o7dU?spm_id_from=333.999.0.0"
+          />
+
+          <TalkCard
+            title="审稿视角下的计算机视觉论文"
+            subTitle="——从投稿到接收"
+            conference="20210602 智源大会"
+            link="https://hub.baai.ac.cn/view/8659"
+          />
+        </div>
+      </section>
+    </main>
+  </main>
+</BaseLayout>

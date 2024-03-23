@@ -1,0 +1,374 @@
+---
+// 导入组件和需要的脚本或样式
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { fetchData } from "../lib/fetchTeam";
+import { Image } from "astro:assets";
+import TeamCard from "../components/team/TeamCard.astro";
+import TeamModal from "../components/team/TeamModal.astro";
+
+// 获取团队成员数据
+const data = await fetchData();
+
+// 计算不同类型成员的数量
+const num_reserchStuff = data.items.filter(
+  (item) =>
+    item.metadata.tags &&
+    item.metadata.tags[0] &&
+    item.metadata.tags[0].sys.id === "researchStuff"
+).length;
+const num_phD = data.items.filter(
+  (item) =>
+    item.metadata.tags &&
+    item.metadata.tags[0] &&
+    item.metadata.tags[0].sys.id === "phD"
+).length;
+const num_master = data.items.filter(
+  (item) =>
+    item.metadata.tags &&
+    item.metadata.tags[0] &&
+    item.metadata.tags[0].sys.id === "master"
+).length;
+
+// 定义不同类型成员的标题和卡片大小
+const people_types = ["researchStuff", "phD", "master", "alumni"];
+const people_type_to_title = {
+  researchStuff: "Research Stuff",
+  phD: "PhD Students",
+  master: "Master Students",
+  alumni: "Alumni",
+};
+const people_type_to_level = {
+  researchStuff: "large",
+  phD: "medium",
+  master: "medium",
+  alumni: "small",
+};
+
+// 将数字转换为英文单词的函数
+function numberToWords(num) {
+  const ones = [
+    "",
+    "one",
+    "two",
+    "three",
+    "four",
+    "five",
+    "six",
+    "seven",
+    "eight",
+    "nine",
+  ];
+  const teens = [
+    "ten",
+    "eleven",
+    "twelve",
+    "thirteen",
+    "fourteen",
+    "fifteen",
+    "sixteen",
+    "seventeen",
+    "eighteen",
+    "nineteen",
+  ];
+  const tens = [
+    "",
+    "",
+    "twenty",
+    "thirty",
+    "forty",
+    "fifty",
+    "sixty",
+    "seventy",
+    "eighty",
+    "ninety",
+  ];
+
+  if (num < 0 || num > 99 || !Number.isInteger(num)) {
+    return "invalid number";
+  }
+
+  if (num < 10) {
+    return ones[num];
+  } else if (num < 20) {
+    return teens[num - 10];
+  } else {
+    const tensPlace = Math.floor(num / 10);
+    const onesPlace = num % 10;
+    return tens[tensPlace] + (onesPlace !== 0 ? "-" + ones[onesPlace] : "");
+  }
+}
+---
+
+<BaseLayout>
+  <main>
+    <TeamModal />
+    <div class="mx-auto">
+      <div class="py-12 px-8">
+        <h2 class="text-4xl font-light tracking-tight sm:text-5xl mb-8">
+          Group Organization
+        </h2>
+        <div class="mx-auto">
+          <p class="text-xl mild leading-relaxed text-left">
+            PKU Camera Intelligence Lab currently has one faculty member,
+            full-time members (including co-supervision and 2024 Fall incoming)
+            of {numberToWords(num_reserchStuff)} postdocs, {
+              numberToWords(num_phD)
+            } doctoral students, {numberToWords(num_master)} master students, and
+            several visiting students / undergraduate research interns as part-time
+            members.
+          </p>
+        </div>
+      </div>
+      <div class="border-t border-gray-200 dark:border-gray-700"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+      <div
+        class="text-3xl sm:text-4xl md:text-5xl font-light text-center text-gray-800 dark:text-gray-200 mb-12"
+      >
+        Principle Investigator
+      </div>
+      <div
+        class="flex flex-col 2xl:flex-row 2xl:gap-24 items-center justify-center gap-16"
+      >
+        <div class="w-full lg:w-1/3 max-w-96">
+          <div class="aspect-w-5 aspect-h-7 rounded-lg overflow-hidden">
+            <img
+              src="https://images.ctfassets.net/yreyglvi5sud/6zt4jJ7F8QSmVk41OtbmP2/c8f75c6efa259ca504e061dcd6a3b0a0/boxin.jpg"
+              alt="Boxin Shi"
+              class="w-full h-full object-cover"
+              loading="eager"
+            />
+          </div>
+        </div>
+        <div class="w-full lg:w-2/3">
+          <div
+            class="text-xl sm:text-2xl md:text-3xl font-semibold text-gray-800 dark:text-gray-200 mb-2"
+          >
+            Boxin Shi / 施柏鑫
+          </div>
+          <div
+            class="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-2"
+          >
+            Associate Professor with Tenure / 研究员 (博士生导师)
+          </div>
+          <div
+            class="text-base md:text-lg text-blue-600 dark:text-blue-400 mb-6 hover:cursor-pointer"
+          >
+            <a id="emailLink">Email address</a>
+          </div>
+
+          <div
+            class="text-base md:text-lg text-gray-600 dark:text-gray-400 leading-relaxed"
+          >
+            Boxin Shi received the BE degree from the Beijing University of
+            Posts and Telecommunications, the ME degree from Peking University,
+            and the PhD degree from the University of Tokyo, in 2007, 2010, and
+            2013. He is currently a Boya Young Fellow Associate Professor (with
+            Tenure) and Research Professor at Peking University, where he leads
+            the Camera Intelligence Lab. Before joining PKU, he did postdoctoral
+            research with MIT Media Lab, Singapore University of Technology and
+            Design, Nanyang Technological University from 2013 to 2016, and
+            worked as a researcher in the National Institute of Advanced
+            Industrial Science and Technology from 2016 to 2017. His papers were
+            awarded as Best Paper - Runner Up at International Conference on
+            Computational Photography 2015 and selected as Best Papers from ICCV
+            2015 for IJCV Special Issue. He has served as an editorial board
+            member of IJCV and an area chair of CVPR/ICCV/ECCV. He is a senior
+            member of IEEE/CCF/CSIG and a Distinguished Lecturer of APSIPA.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 渲染不同类型的团队成员 -->
+    {
+      people_types.map((type) => (
+        <div class="flex items-center justify-center">
+          <div class="mb-16">
+            <div class="text-3xl sm:text-4xl md:text-5xl font-light text-center text-gray-800 dark:text-gray-200 m-12">
+              {people_type_to_title[type]}
+              {type === "alumni" && (
+                <button
+                  id="alumniToggleButton"
+                  class="ml-4 px-3 py-2 bg-gray-200 dark:bg-gray-700 rounded-md text-sm focus:outline-none hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-200"
+                >
+                  <svg
+                    id="alumniToggleIcon"
+                    class="w-4 h-4 transform rotate-0 transition-transform duration-200"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </button>
+              )}
+            </div>
+            <div
+              id={`${type}Container`}
+              class={`${type === "alumni" ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mx-auto" : "flex flex-row flex-wrap gap-12 justify-center"}`}
+              style={type === "alumni" ? "display:none" : "display:flex"}
+            >
+              {data.items
+                .sort((a, b) => {
+                  if (a.fields.year === b.fields.year) {
+                    return b.fields.priority - a.fields.priority;
+                  }
+                  return (
+                    (a.fields.year - b.fields.year) *
+                    (type === "alumni" ? -1 : 1)
+                  );
+                })
+                .map((item) => {
+                  if (item.metadata?.tags[0]?.sys.id === type) {
+                    return (
+                      <div
+                        id={`people-${item.fields.name}`}
+                        class={type}
+                        data-fields={JSON.stringify(item.fields)}
+                      >
+                        <TeamCard
+                          data={item.fields}
+                          level={people_type_to_level[type]}
+                        />
+                      </div>
+                    );
+                  }
+                })}
+            </div>
+          </div>
+        </div>
+      ))
+    }
+  </main>
+</BaseLayout>
+
+<!-- 处理团队成员卡片的点击事件 -->
+<script type="module">
+  // 切换元素的显示状态并设置属性值
+  function toggleDisplayAndSetProperty(elementId, content, propertyType) {
+    const element = document.getElementById(elementId);
+    if (element) {
+      element.style.display = content ? "block" : "none";
+      if (content) {
+        if (propertyType === "href") {
+          element.href = content;
+        } else if (propertyType === "innerHTML") {
+          element.innerHTML = content;
+        }
+      }
+    }
+  }
+
+  // 为非 alumni 类型的团队成员卡片添加点击事件
+  const peopleElements = document.querySelectorAll(
+    '[id^="people-"]:not(.alumni)'
+  );
+  peopleElements.forEach((element) => {
+    // 在每个元素内部查找具有 "people-portrait" 类的子元素
+    const portraitElement = element.querySelector(".people-portrait");
+
+    // 如果找到了 "people-portrait" 元素,则添加点击事件
+    if (portraitElement) {
+      portraitElement.addEventListener("click", function () {
+        // 在这里编写点击事件的处理逻辑
+        console.log("Clicked on portrait:", portraitElement);
+        // 可以在这里执行其他操作
+        const data = JSON.parse(element.dataset.fields);
+        const modal = document.getElementById("modal");
+        const overlay = document.getElementById("overlay_team");
+
+        modal.style.display = "block";
+        overlay.style.display = "block";
+
+        document.getElementById("modal-name").innerHTML =
+          `${data.name} / ${data.nameCn}`;
+
+        toggleDisplayAndSetProperty(
+          "modal-educationCurrent",
+          data.educationCurrent,
+          "innerHTML"
+        );
+        toggleDisplayAndSetProperty(
+          "modal-educationPrevious",
+          data.educationPrevious,
+          "innerHTML"
+        );
+        toggleDisplayAndSetProperty(
+          "modal-educationNext",
+          data.educationNext ? "Next: " + data.educationNext : null,
+          "innerHTML"
+        );
+        toggleDisplayAndSetProperty("modal-homepage", data.homepage, "href");
+
+        document.getElementById("modal-image").src = data.image
+          ? data.image.fields.file.url
+          : "https://images.ctfassets.net/yreyglvi5sud/4usdd18KLnyLugCgzJU4Od/b6534d65f0f472b1904fbbc1e9ed7240/logo_icon.png";
+      });
+    }
+  });
+
+  // 处理 alumni 类型的展开/折叠按钮点击事件
+  const alumniToggleButton = document.getElementById("alumniToggleButton");
+  const alumniToggleIcon = document.getElementById("alumniToggleIcon");
+  const alumniContainer = document.getElementById("alumniContainer");
+
+  alumniToggleButton.addEventListener("click", function () {
+    alumniContainer.style.display =
+      alumniContainer.style.display === "none" ? "grid" : "none";
+    alumniToggleIcon.classList.toggle("rotate-180");
+  });
+
+  // 点击模态框外部区域关闭模态框
+  const modal = document.getElementById("modal");
+  const overlay = document.getElementById("overlay_team");
+
+  overlay.addEventListener("click", function () {
+    modal.style.display = "none";
+    overlay.style.display = "none";
+  });
+</script>
+
+<!-- 隐藏显示email -->
+<script>
+  function rot13(str) {
+    return str.replace(/[a-zA-Z]/g, function (c) {
+      return String.fromCharCode(
+        (c <= "Z" ? 90 : 122) >= (c = c.charCodeAt(0) + 13) ? c : c - 26
+      );
+    });
+  }
+  document.addEventListener("DOMContentLoaded", function () {
+    var emailLink = document.getElementById("emailLink");
+    var originalText = emailLink.innerText;
+    var timer = null;
+    function showEmail() {
+      emailLink.innerText = rot13("fuvobkva@cxh.rqh.pa");
+      emailLink.style.cursor = "default";
+    }
+    function hideEmail() {
+      emailLink.innerText = originalText;
+      emailLink.style.cursor = "pointer";
+    }
+    emailLink.addEventListener("mouseenter", function () {
+      clearTimeout(timer);
+      showEmail();
+    });
+    emailLink.addEventListener("mouseleave", function () {
+      timer = setTimeout(hideEmail, 5000);
+    });
+    emailLink.addEventListener("click", function (event) {
+      event.preventDefault();
+      clearTimeout(timer);
+      showEmail();
+      timer = setTimeout(hideEmail, 5000);
+    });
+  });
+</script>

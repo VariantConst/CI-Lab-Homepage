@@ -1,0 +1,39 @@
+---
+import { Image } from "astro:assets";
+---
+
+<div class="relative h-[400px]">
+  <div
+    class="absolute left-1/2 transform -translate-x-1/2 h-auto mb-12 py-24 bg-homepage-background bg-cover bg-center border border-gray-700 w-screen z-0"
+    style={{ backgroundBlendMode: "multiply" }}
+  >
+    <div
+      class="absolute inset-0 bg-gradient-to-r from-[#11262A] to-[#121921] opacity-70 pointer-events-none"
+    >
+    </div>
+    <div class="relative">
+      <div
+        class="hover:animate-pulse flex justify-center relative max-w-xl mx-auto"
+      >
+        <Image
+          src="https://images.ctfassets.net/yreyglvi5sud/4usdd18KLnyLugCgzJU4Od/b6534d65f0f472b1904fbbc1e9ed7240/logo_icon.png"
+          alt="Logo"
+          width={192}
+          height={128}
+          class="h-28 object-contain flex-shrink-0"
+          loading="lazy"
+        />
+      </div>
+      <div class="flex justify-center relative max-w-xl mx-auto">
+        <Image
+          src="https://images.ctfassets.net/yreyglvi5sud/2FfyJoKDLrEiKahNId9HYP/92b25333b58892ce53a55424e31d4aba/lab_name.png"
+          alt="Logo"
+          width={280}
+          height={200}
+          class="object-contain flex-shrink-0"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </div>
+</div>
