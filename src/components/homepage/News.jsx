@@ -13,7 +13,7 @@ const NewsTimeline = ({ newsItems }) => {
 
   return (
     <div className="p-6 md:p-10 md:min-w-96 flex flex-col items-center rounded-lg shadow-lg dark:bg-gray-800">
-      <h1 className="text-4xl md:text-5xl lg:text-6xl font-extralight mb-6 text-center text-gray-600 dark:text-gray-400">
+      <h1 className="text-3xl md:text-4xl lg:text-5xl font-extralight mb-6 text-center text-gray-600 dark:text-gray-400">
         Recent{" "}
         <span className="font-light text-gray-800 dark:text-white">News</span>
       </h1>
