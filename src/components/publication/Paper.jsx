@@ -48,7 +48,7 @@ const PapersDisplay = ({ entries }) => {
     entries.items.slice(0, initialDisplayCount)
   );
 
-  const [viewMode, setViewMode] = useState("card");
+  const [viewMode, setViewMode] = useState("list");
   const [selectedTag, setSelectedTag] = useState("");
   const [selectedYear, setSelectedYear] = useState("");
   const [selectedConference, setSelectedConference] = useState("");

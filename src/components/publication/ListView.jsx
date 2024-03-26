@@ -9,7 +9,7 @@ const ListView = ({ groupedEntries, formatAuthors }) => {
       {Object.entries(groupedEntries)
         .sort(([a], [b]) => parseInt(b) - parseInt(a))
         .map(([year, items]) => (
-          <div key={year} className="my-12 mx-auto flex justify-center w-full">
+          <div key={year} className="my-4 mx-auto flex justify-center w-full">
             <div className="max-w-screen-xl w-full">
               <div class="px-4 md:px-8 lg:px-12 border-b border-gray-200 dark:border-gray-700">
                 <h2
@@ -22,7 +22,7 @@ const ListView = ({ groupedEntries, formatAuthors }) => {
 
               {items.map((item, index) => (
                 <div
-                  className="flex flex-col lg:flex-row justify-center items-center py-8 text-sm lg:text-base"
+                  className="flex flex-col lg:flex-row justify-center items-center py-4 text-sm lg:text-base"
                   data-index={index}
                   data-tags={JSON.stringify([
                     ...item.metadata.tags.map((tag) => tag.sys.id),
@@ -31,8 +31,8 @@ const ListView = ({ groupedEntries, formatAuthors }) => {
                   ])}
                   data-fields={JSON.stringify(item.fields)}
                 >
-                  <div className="w-full lg:w-1/3 lg:pr-8 max-w-screen-md">
-                    <div className="bg-white shadow-md h-64 lg:h-56 flex items-center justify-center relative overflow-hidden">
+                  <div className="w-full lg:w-5/12 lg:pr-8 max-w-screen-md">
+                    <div className="bg-white shadow-md h-48 lg:h-36 flex items-center justify-center relative overflow-hidden">
                       <img
                         src={item.fields.thumbnail.fields.file.url}
                         alt="Paper thumbnail"
