@@ -1,8 +1,9 @@
 ---
 // Import components and any needed scripts or styles here import BaseLayout
 import BaseLayout from "../layouts/BaseLayout.astro";
-import ImageGallery from "../components/Gallery.jsx";
+import ImageGallery from "../components/contact/Gallery.jsx";
 import AnimatedLink from "../components/utils/AnimatedLink.astro";
+import VideoEmbed from "../components/contact/VideoEmbed.jsx";
 const contactCardStyle =
   "flex flex-col justify-between items-center border-2 border-gray-300 dark:border-gray-500 rounded-lg p-6 transition-all duration-300 ease-in-out hover:shadow-lg hover:border-gray-400 dark:hover:border-gray-400";
 ---
@@ -10,13 +11,12 @@ const contactCardStyle =
 <BaseLayout>
   <main class="container mx-auto px-4 py-12 flex flex-col items-center">
     <ImageGallery client:load />
-    <section class="mb-16">
+
+    <section class="mb-8">
       <h2 class="text-4xl font-light mb-12 text-center dark:text-gray-200">
         Contact Us
       </h2>
-      <div
-        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto"
-      >
+      <div class="flex flex-col lg:flex-row gap-8 max-w-6xl mx-auto">
         <div class={contactCardStyle}>
           <div class="flex items-center mb-4">
             <svg
@@ -106,6 +106,8 @@ const contactCardStyle =
       </div>
     </section>
 
+    <VideoEmbed client:load />
+
     <!-- Prospective Students -->
     <section class="mb-16 max-w-screen-lg">
       <h2 class="text-4xl font-light mb-6 text-center">Prospective Students</h2>
@@ -162,3 +164,4 @@ const contactCardStyle =
     </section>
   </main>
 </BaseLayout>
+../components/contact/Gallery.jsx
