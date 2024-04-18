@@ -32,7 +32,7 @@ const WelcomeSection = () => {
 
   return (
     <div className="w-full justify-center items-center">
-      <div className="mx-4 md:mx-12">
+      <div className="mx-4 4xl:mx-12">
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-thin mb-8 mild">
           Welcome to{" "}
           <span className="font-light text-gray-800 dark:text-white">
@@ -40,7 +40,7 @@ const WelcomeSection = () => {
           </span>{" "}
           Lab
         </h2>
-        <p className="text-lg md:text-xl lg:text-2xl mild mb-8 leading-relaxed">
+        <p className="text-md md:text-lg lg:text-xl mild mb-8 leading-relaxed">
           Our lab conducts research on computational photography and computer
           vision at the Institute for Visual Technology / National Engineering
           Research Center of Visual Technology{" "}
@@ -66,7 +66,7 @@ const WelcomeSection = () => {
           </AnimatedLink>
           .
         </p>
-        <p className="text-lg md:text-xl lg:text-2xl mild mb-10 leading-relaxed">
+        <p className="text-md md:text-lg lg:text-xl mild mb-10 leading-relaxed">
           We study and build Cameras powered with artificial Intelligence
           algorithms to benefit the next generation of AI through super-human
           visual sensing and computing. Please refer to our{" "}
@@ -82,7 +82,7 @@ const WelcomeSection = () => {
           <div className="flex items-center">
             <a
               href="/contact"
-              className="inline-block relative overflow-hidden bg-transparent text-gray-800 dark:text-gray-200 text-xl md:text-2xl lg:text-3xl px-8 py-3 border-2 border-gray-400 dark:border-gray-600 rounded-md hover:text-white dark:hover:text-white group transition duration-500"
+              className="inline-block relative overflow-hidden bg-transparent text-gray-800 dark:text-gray-200 text-lg md:text-xl lg:text-2xl px-8 py-3 border-2 border-gray-400 dark:border-gray-600 rounded-md hover:text-white dark:hover:text-white group transition duration-500"
             >
               <span className="absolute w-0 h-full top-0 left-0 bg-gray-800 dark:bg-gray-700 transition-all duration-300 ease-out group-hover:w-full"></span>
               <span className="relative z-10 group-hover:text-white dark:group-hover:text-white transition duration-300">

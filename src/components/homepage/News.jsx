@@ -12,7 +12,7 @@ const NewsTimeline = ({ newsItems }) => {
   };
 
   return (
-    <div className="p-6 md:p-10 md:min-w-96 flex flex-col items-center rounded-lg shadow-lg dark:bg-gray-800">
+    <div className="p-6 md:p-10 md:min-w-96 md:max-w-screen-sm flex flex-col items-center rounded-lg shadow-lg dark:bg-gray-800">
       <h1 className="text-3xl md:text-4xl lg:text-5xl font-extralight mb-6 text-center text-gray-600 dark:text-gray-400">
         Recent{" "}
         <span className="font-light text-gray-800 dark:text-white">News</span>
@@ -25,14 +25,14 @@ const NewsTimeline = ({ newsItems }) => {
             .map((item, index) => (
               <li key={index} className="mb-10 ms-4">
                 <div className="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
-                <time className="mb-1 text-base md:text-lg lg:text-xl font-normal leading-none text-gray-400 dark:text-gray-500">
+                <time className="mb-1 text-base md:text-md lg:text-lg font-normal leading-none text-gray-400 dark:text-gray-500">
                   {item.date}
                 </time>
-                <h3 className="text-xl md:text-2xl lg:text-3xl font-normal text-gray-900 dark:text-white">
+                <h3 className="text-md md:text-lg lg:text-xl font-normal text-gray-900 dark:text-white">
                   {item.title}
                 </h3>
                 {item.description && (
-                  <p className="mb-4 text-lg md:text-xl lg:text-2xl font-normal text-gray-500 dark:text-gray-400">
+                  <p className="mb-4 text-md md:text-lg lg:text-xl font-normal text-gray-500 dark:text-gray-400">
                     {item.description}
                   </p>
                 )}
