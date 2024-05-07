@@ -84,7 +84,7 @@ const CardView = ({ papers, openModal, formatAuthors, tag_id_to_str }) => {
               <div className="mb-6 h-64 w-full flex items-center justify-center relative overflow-hidden rounded-2xl">
                 <img
                   id={`thumbnail-${index}`}
-                  src={`${item.fields.thumbnail.fields.file.url}?w=1200&h=400&fit=pad&bg=rgb:ffffff`}
+                  src={`${item.fields.thumbnail.fields.file.url}?w=1200&h=600&fit=pad&bg=rgb:ffffff`}
                   alt="Paper thumbnail"
                   className={
                     "w-full h-full absolute object-cover object-center hover:cursor-pointer transition-transform duration-500 hover:scale-110"

@@ -4,26 +4,31 @@ import { useSwipeable } from "react-swipeable";
 const images = [
   {
     id: 1,
+    src: "https://images.ctfassets.net/yreyglvi5sud/uIYiJua3ITEiK1kgwJrxz/daed4b396c5afb3685dec0d5c5fd7968/20240506VALSE.jpg",
+    date: "2024-05-06",
+  },
+  {
+    id: 2,
     src: "https://images.ctfassets.net/yreyglvi5sud/X7a2cVY59HpmoHYUR0ggd/72044013592b61dc8cc397b4f394e06e/20240122_____.jpg",
     date: "2024-01-22",
   },
   {
-    id: 2,
+    id: 3,
     src: "https://images.ctfassets.net/yreyglvi5sud/6mRZOkMupPMW7ewJHvSCgg/0331f72699402fbd190bbc9bc79a954d/20230402_____.jpg",
     date: "2023-04-02",
   },
   {
-    id: 3,
+    id: 4,
     src: "https://images.ctfassets.net/yreyglvi5sud/359ORWc36SqxPQle3BECpi/50f0f93822c8d04acb40c8aab736d06e/20230611VALSE.jpg",
     date: "2023-06-11",
   },
   {
-    id: 4,
+    id: 5,
     src: "https://images.ctfassets.net/yreyglvi5sud/6ESLcQagQLkrcrLPLDWvh5/95210ad29c887ced6a7292c28ff8879b/20220823VALSE.jpg",
     date: "2022-08-23",
   },
   {
-    id: 5,
+    id: 6,
     src: "https://images.ctfassets.net/yreyglvi5sud/35hZ8RDgcJmbjzwbRIaf2e/9c36eb443a90413535e54175cd43c589/20220107_____.JPG",
     date: "2022-01-07",
   },

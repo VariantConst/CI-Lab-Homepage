@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function VideoEmbed() {
+function VideoEmbed({ link }) {
   // 定义一个state来控制视频区域的显示与隐藏
   const [showVideo, setShowVideo] = useState(false);
 
@@ -71,7 +71,7 @@ function VideoEmbed() {
       ) : (
         <div className="relative w-full pt-[56.25%] bg-black rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 dark:bg-gray-800">
           <iframe
-            src="//player.bilibili.com/player.html?aid=1952417839&bvid=BV17C411b7Xw&cid=1484053748&p=1&as_wide=1&high_quality=1&danmaku=0"
+            src={link}
             className="absolute top-0 left-0 w-full h-full"
             allowFullScreen={true}
             style={{ border: 0 }}

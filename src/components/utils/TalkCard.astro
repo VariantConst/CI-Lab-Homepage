@@ -1,6 +1,7 @@
 ---
-const { title, subTitle, conference, link, note } = Astro.props;
+const { title, subTitle, conference, link, note, video } = Astro.props;
 import AnimatedLink from "./AnimatedLink.astro";
+import VideoEmbed from "../contact/VideoEmbed.jsx";
 ---
 
 <div
@@ -20,6 +21,21 @@ import AnimatedLink from "./AnimatedLink.astro";
         <h5 class="font-light text-center text-gray-600 dark:text-gray-300">
           {subTitle}
         </h5>
+      )
+    }
+    {
+      video && (
+        <div
+          class="relative w-2/3 rounded-lg overflow-hidden"
+          style="padding-top: 37.5%"
+        >
+          <iframe
+            src="//player.bilibili.com/player.html?aid=1952417839&bvid=BV17C411b7Xw&cid=1484053748&p=1&as_wide=1&high_quality=1&danmaku=0"
+            class="absolute top-0 left-0 w-full h-full"
+            allowfullscreen={true}
+            style={{ border: 0 }}
+          />
+        </div>
       )
     }
   </div>
