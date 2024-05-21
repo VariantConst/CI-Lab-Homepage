@@ -1,5 +1,6 @@
 ---
-const { title, subTitle, conference, link, note, video } = Astro.props;
+const { title, subTitle, conference, link, subtitleLink, note, video } =
+  Astro.props;
 import AnimatedLink from "./AnimatedLink.astro";
 import VideoEmbed from "../contact/VideoEmbed.jsx";
 ---
@@ -19,7 +20,16 @@ import VideoEmbed from "../contact/VideoEmbed.jsx";
     {
       subTitle && (
         <h5 class="font-light text-center text-gray-600 dark:text-gray-300">
-          {subTitle}
+          {subtitleLink ? (
+            <AnimatedLink
+              href={subtitleLink}
+              className="text-gray-800 dark:text-gray-100 hover:text-blue-600 dark:hover:text-blue-400"
+            >
+              {subTitle}
+            </AnimatedLink>
+          ) : (
+            subTitle
+          )}
         </h5>
       )
     }

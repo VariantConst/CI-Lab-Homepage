@@ -34,7 +34,7 @@ const ListView = ({ groupedEntries, formatAuthors }) => {
                   <div className="w-full lg:w-5/12 lg:pr-8 max-w-screen-md">
                     <div className="bg-white shadow-md h-48 lg:h-36 flex items-center justify-center relative overflow-hidden">
                       <img
-                        src={`${item.fields.thumbnail.fields.file.url}?w=1800&h=600&fit=pad&bg=rgb:ffffff`}
+                        src={`${item.fields.thumbnail.fields.file.url}?w=1800&h=400&fit=pad&bg=rgb:ffffff`}
                         alt="Paper thumbnail"
                         className="w-full h-full absolute object-cover object-center transition-all duration-500 ease-in-out transform hover:scale-105"
                         loading="lazy"

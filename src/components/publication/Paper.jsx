@@ -21,7 +21,7 @@ const tag_id_to_str = {
 };
 
 // 设置首屏默认加载的论文数量（以及后续每次多加载的论文数量）
-const initialDisplayCount = 8;
+const initialDisplayCount = 32;
 
 const top_conferences = [
   "TPAMI",
