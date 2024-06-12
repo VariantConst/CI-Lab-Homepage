@@ -79,7 +79,7 @@ const ImageGallery = () => {
 
   return (
     <div
-      className="flex flex-col items-center space-y-8 w-full h-full"
+      className="flex flex-col items-center space-y-8 w-full h-full border-none"
       tabIndex="0"
       onKeyDown={handleKeyDown}
     >
