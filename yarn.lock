@@ -2867,9 +2867,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"framer-motion@npm:^11.0.23":
-  version: 11.0.23
-  resolution: "framer-motion@npm:11.0.23"
+"framer-motion@npm:^11.2.12":
+  version: 11.2.12
+  resolution: "framer-motion@npm:11.2.12"
   dependencies:
     tslib: "npm:^2.4.0"
   peerDependencies:
@@ -2883,7 +2883,7 @@ __metadata:
       optional: true
     react-dom:
       optional: true
-  checksum: 10c0/0580429a1b06973f65e7845412f98710eeb376d03e6f90277e96a989ebe2f38758f6f9a66664e810cf1c7c8ffb95922094290317fae4535432a6d0c49216c767
+  checksum: 10c0/a0f4460d2f135742389cf616968314fabee75ad9740fcb62a1c414deee8ade12ac19f4df3e399b819ce2337b9e76fe5a5363787decc60375477f5d23304f73f4
   languageName: node
   linkType: hard
 
@@ -3730,6 +3730,15 @@ __metadata:
   dependencies:
     yallist: "npm:^4.0.0"
   checksum: 10c0/cb53e582785c48187d7a188d3379c181b5ca2a9c78d2bce3e7dee36f32761d1c42983da3fe12b55cb74e1779fa94cdc2e5367c028a9b35317184ede0c07a30a9
+  languageName: node
+  linkType: hard
+
+"lucide-react@npm:^0.400.0":
+  version: 0.400.0
+  resolution: "lucide-react@npm:0.400.0"
+  peerDependencies:
+    react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
+  checksum: 10c0/06bdb0c0f4195a225cf4fe2b4b473837a14fda51ce4e24c6ab08e89160fa39315315bd20efe516b71e09192bc5eefff42693e8131ebae316df373aa935e5a5b4
   languageName: node
   linkType: hard
 
@@ -5605,7 +5614,8 @@ __metadata:
     "@vitejs/plugin-react": "npm:^4.2.1"
     astro: "npm:^4.4.15"
     contentful: "npm:^10.6.22"
-    framer-motion: "npm:^11.0.23"
+    framer-motion: "npm:^11.2.12"
+    lucide-react: "npm:^0.400.0"
     preact: "npm:^10.19.6"
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"

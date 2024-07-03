@@ -2,7 +2,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  font-family: 'Roboto', 'Noto Sans Simplified Chinese', sans-serif;
+  font-family: "Roboto", "Noto Sans Simplified Chinese", sans-serif;
 }
 
 html {
@@ -15,10 +15,19 @@ html.dark {
   color: #9aaedd;
 }
 
-html .mild{
+html .mild {
   color: #6b7280;
 }
 
 html.dark .mild {
   color: #c4c4c4;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

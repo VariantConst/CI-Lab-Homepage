@@ -3,59 +3,56 @@ import React, { useState } from "react";
 const NewsTimeline = ({ newsItems }) => {
   const [expanded, setExpanded] = useState(false);
 
-  const handleShowMore = () => {
-    setExpanded(true);
-  };
-
-  const handleShowLess = () => {
-    setExpanded(false);
-  };
+  const handleShowMore = () => setExpanded(true);
+  const handleShowLess = () => setExpanded(false);
 
   return (
-    <div className="p-6 md:p-10 md:min-w-96 md:max-w-screen-sm flex flex-col items-center rounded-lg shadow-lg dark:bg-gray-800">
-      <h1 className="text-3xl md:text-4xl lg:text-5xl font-extralight mb-6 text-center text-gray-600 dark:text-gray-400">
+    <div className="bg-white dark:bg-gray-900 shadow-xl rounded-xl p-6 md:p-8 max-w-md mx-auto h-[32rem] flex flex-col">
+      <h1 className="text-3xl md:text-4xl font-light mb-6 text-center text-gray-800 dark:text-gray-200">
         Recent{" "}
-        <span className="font-light text-gray-800 dark:text-white">News</span>
+        <span className="font-semibold text-blue-600 dark:text-blue-400">
+          News
+        </span>
       </h1>
 
-      <div className={`overflow-y-auto ${expanded ? "max-h-96" : ""}`}>
-        <ol className="relative border-s border-gray-200 dark:border-gray-700">
+      <div className="flex-grow overflow-y-auto pr-4 scrollbar-hide">
+        <ol className="relative border-l border-gray-200 dark:border-gray-700">
           {newsItems
             .slice(0, expanded ? newsItems.length : 2)
             .map((item, index) => (
-              <li key={index} className="mb-10 ms-4">
-                <div className="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
-                <time className="mb-1 text-base md:text-md lg:text-lg font-normal leading-none text-gray-400 dark:text-gray-500">
+              <li key={index} className="mb-10 ml-6">
+                <span className="absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full -left-3 ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900">
+                  <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                </span>
+                <time className="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">
                   {item.date}
                 </time>
-                <h3 className="text-md md:text-lg lg:text-xl font-normal text-gray-900 dark:text-white">
+                <h3 className="flex items-center mb-1 text-lg font-semibold text-gray-900 dark:text-white">
                   {item.title}
                 </h3>
                 {item.description && (
-                  <p className="mb-4 text-md md:text-lg lg:text-xl font-normal text-gray-500 dark:text-gray-400">
+                  <p className="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">
                     {item.description}
                   </p>
                 )}
-
                 {item.url && (
                   <a
                     href={item.url}
-                    className="inline-flex items-center px-4 py-2 text-base md:text-lg lg:text-xl font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-100 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700"
+                    className="inline-flex items-center px-4 py-2 text-sm font-medium text-blue-600 bg-blue-100 rounded-md hover:bg-blue-200 transition duration-300 ease-in-out dark:text-blue-400 dark:bg-blue-900 dark:hover:bg-blue-800"
                   >
-                    Learn more{" "}
+                    Learn more
                     <svg
-                      className="w-3 h-3 ms-2 rtl:rotate-180"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
+                      className="w-4 h-4 ml-2"
                       fill="none"
-                      viewBox="0 0 14 10"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
                     >
                       <path
-                        stroke="currentColor"
                         strokeLinecap="round"
                         strokeLinejoin="round"
                         strokeWidth="2"
-                        d="M1 5h12m0 0L9 1m4 4L9 9"
+                        d="M9 5l7 7-7 7"
                       ></path>
                     </svg>
                   </a>
@@ -66,22 +63,13 @@ const NewsTimeline = ({ newsItems }) => {
       </div>
 
       {newsItems.length > 2 && (
-        <div className="mt-6 flex justify-center">
-          {expanded ? (
-            <button
-              onClick={handleShowLess}
-              className="px-4 py-2 text-base md:text-lg lg:text-xl font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-200 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700"
-            >
-              Show Less
-            </button>
-          ) : (
-            <button
-              onClick={handleShowMore}
-              className="px-4 py-2 text-base md:text-lg lg:text-xl font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-200 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700"
-            >
-              Show More
-            </button>
-          )}
+        <div className="mt-6 text-center">
+          <button
+            onClick={expanded ? handleShowLess : handleShowMore}
+            className="px-6 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:bg-blue-500 dark:hover:bg-blue-600"
+          >
+            {expanded ? "Show Less" : "Show More"}
+          </button>
         </div>
       )}
     </div>

@@ -3,13 +3,15 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import CourseCard from "../components/utils/CourseCard.astro";
 import TalkCard from "../components/utils/TalkCard.astro";
+import ImageReveal from "../components/course/ImageReveal";
 ---
 
 <BaseLayout>
   <main>
     <main class="max-w-4xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
       <h1 class="text-4xl font-light tracking-tight mb-8">Courses</h1>
-      <section class="mb-16">
+      <ImageReveal client:load />
+      <section class="my-16">
         <h2 class="text-3xl font-light mb-6">At PKU</h2>
         <div>
           <div class="grid grid-cols-1 gap-6 mb-8">
