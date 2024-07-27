@@ -47,8 +47,6 @@ export async function fetchData() {
     skip += limit; // 更新 skip 的值，继续查询下一页
   }
 
-  
-  
   // 过滤掉不具有指定字段的条目
   const filteredItems = entries.items.filter(
     (entry: any) =>
@@ -63,7 +61,7 @@ export async function fetchData() {
   );
 
   // 异常值检测
-  console.log(`论文总数：${filteredItems.length}`)
+  console.log(`论文总数：${filteredItems.length}`);
   entries.items.forEach((entry: any) => {
     if (
       !entry.fields.title ||
@@ -79,7 +77,7 @@ export async function fetchData() {
       console.log(entry.fields.title);
     }
   });
-  
+
   filteredItems.sort((a: any, b: any) => {
     // 首先按年份降序排序
     const yearA = new Date(a.fields.date).getFullYear();
@@ -89,7 +87,16 @@ export async function fetchData() {
     }
 
     // 对于同一年份的论文，按照 publisher 的优先级排序
-    const priorityOrder = ["TPAMI", "IJCV", "CVPR", "ICCV", "ECCV"];
+    const priorityOrder = [
+      "TPAMI",
+      "IJCV",
+      "NeurIPS",
+      "MM",
+      "ICCV",
+      "ECCV",
+      "CVPR",
+      "AAAI",
+    ];
     const priorityA = priorityOrder.indexOf(a.fields.publisher);
     const priorityB = priorityOrder.indexOf(b.fields.publisher);
     if (priorityA !== priorityB) {
