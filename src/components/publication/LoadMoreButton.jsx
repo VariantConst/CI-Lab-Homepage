@@ -1,5 +1,3 @@
-import React from "react";
-
 const LoadMoreButton = ({ papers, filteredTotal, loadMore }) => {
   return papers.length < filteredTotal ? (
     <div className="flex items-center justify-center space-x-4 m-6">

@@ -1,5 +1,4 @@
 import { contentfulClient } from "./contentful";
-import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
 import type { EntryFieldTypes } from "contentful";
 
 export async function fetchData() {

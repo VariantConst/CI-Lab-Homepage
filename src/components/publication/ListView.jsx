@@ -1,5 +1,3 @@
-import React from "react";
-
 const ListView = ({ groupedEntries, formatAuthors }) => {
   const linkClasses = "hover:text-gray-600 transition duration-200";
   const linkClassesWithUnderline = linkClasses + " underline";
@@ -11,7 +9,7 @@ const ListView = ({ groupedEntries, formatAuthors }) => {
         .map(([year, items]) => (
           <div key={year} className="my-4 mx-auto flex justify-center w-full">
             <div className="max-w-screen-xl w-full">
-              <div class="px-4 md:px-8 lg:px-12 border-b border-gray-200 dark:border-gray-700">
+              <div className="px-4 md:px-8 lg:px-12 border-b border-gray-200 dark:border-gray-700">
                 <h2
                   id={`year-${year}`}
                   className="text-4xl font-light text-left mb-4"

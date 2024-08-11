@@ -140,7 +140,7 @@ const ImageGallery = () => {
                 transform: `translateX(-${(selectedImageId - 1) * 100}%)`,
               }}
             >
-              {images.map((image, index) => (
+              {images.map((image) => (
                 <div key={image.id} className="w-full flex-shrink-0">
                   <img
                     src={image.src + "?w=960&fit=fill"}

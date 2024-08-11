@@ -2,7 +2,6 @@
 // 导入组件和需要的脚本或样式
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { fetchData } from "../lib/fetchTeam";
-import { Image } from "astro:assets";
 import TeamCard from "../components/team/TeamCard.astro";
 import TeamModal from "../components/team/TeamModal.astro";
 
@@ -45,7 +44,7 @@ const people_type_to_level = {
 };
 
 // 将数字转换为英文单词的函数
-function numberToWords(num) {
+function numberToWords(num: number) {
   const ones = [
     "",
     "one",
@@ -187,7 +186,7 @@ function numberToWords(num) {
         <div class="flex items-center justify-center">
           <div class="mb-16">
             <div class="text-3xl sm:text-4xl md:text-5xl font-light text-center text-gray-800 dark:text-gray-200 m-12">
-              {people_type_to_title[type]}
+              {people_type_to_title[type as keyof typeof people_type_to_title]}
               {type === "alumni" && (
                 <button
                   id="alumniToggleButton"
@@ -236,7 +235,7 @@ function numberToWords(num) {
                       >
                         <TeamCard
                           data={item.fields}
-                          level={people_type_to_level[type]}
+                          level={people_type_to_level[type as keyof typeof people_type_to_level]}
                         />
                       </div>
                     );
@@ -337,7 +336,7 @@ function numberToWords(num) {
 </script>
 
 <!-- 隐藏显示email -->
-<script>
+<script type="module">
   function rot13(str) {
     return str.replace(/[a-zA-Z]/g, function (c) {
       return String.fromCharCode(

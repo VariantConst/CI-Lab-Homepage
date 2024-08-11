@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 function VideoEmbed({ link }) {
   // 定义一个state来控制视频区域的显示与隐藏

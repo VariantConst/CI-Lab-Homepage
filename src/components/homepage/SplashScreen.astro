@@ -53,10 +53,10 @@ import { Image } from "astro:assets";
   const expandingLogo = document.getElementById("expandingLogo");
   const textAnimation = document.getElementById("textAnimation");
 
-  rotatingLogo.addEventListener("animationend", () => {
-    rotatingLogo.classList.add("hidden");
-    expandingLogo.classList.remove("hidden");
-    textAnimation.classList.remove("hidden");
+  rotatingLogo?.addEventListener("animationend", () => {
+    rotatingLogo?.classList.add("hidden");
+    expandingLogo?.classList.remove("hidden");
+    textAnimation?.classList.remove("hidden");
   });
 </script>
 

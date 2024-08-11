@@ -41,7 +41,7 @@
     if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
       return "dark";
     }
-    return "light";
+    return "light"; // Default to 'light' if no preference is found
   })();
 
   if (theme === "light") {
@@ -50,7 +50,8 @@
     document.documentElement.classList.add("dark");
   }
 
-  window.localStorage.setItem("theme", theme);
+  // Ensure theme is a string before setting it in localStorage
+  window.localStorage.setItem("theme", theme ?? "light");
 
   const handleToggleClick = () => {
     const element = document.documentElement;
@@ -60,7 +61,11 @@
     localStorage.setItem("theme", isDark ? "dark" : "light");
   };
 
-  document
-    .getElementById("themeToggle")
-    .addEventListener("click", handleToggleClick);
+  // Check if the element exists before adding the event listener
+  const themeToggle = document.getElementById("themeToggle");
+  if (themeToggle) {
+    themeToggle.addEventListener("click", handleToggleClick);
+  } else {
+    console.error("Theme toggle button not found!"); // Handle the error appropriately
+  }
 </script>

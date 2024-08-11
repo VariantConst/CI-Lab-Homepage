@@ -1,5 +1,3 @@
-import React from "react";
-
 const AnimatedLink = ({ href, className = "", children }) => {
   return (
     <a href={href} className={`group relative inline-block ${className}`}>

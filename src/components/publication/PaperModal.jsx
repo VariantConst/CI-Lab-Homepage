@@ -1,7 +1,6 @@
-import React from "react";
 import TagLink from "./TagLink";
 
-const PaperModal = ({ isOpen, closeModal, selectedPaper }) => {
+const PaperModal = ({ closeModal, selectedPaper }) => {
   return (
     <div
       id="modal-backdrop-paper"

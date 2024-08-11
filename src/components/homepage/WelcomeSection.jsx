@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import AnimatedLink from "../utils/AnimatedLink.jsx";
 import { UserPlus, Book, MessageCircle } from "lucide-react";
 

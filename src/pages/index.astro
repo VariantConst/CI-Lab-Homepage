@@ -67,16 +67,18 @@ const newsItems = [
     const isFirstVisit = localStorage.getItem("isFirstVisit");
     const splashScreen = document.getElementById("splash-screen");
 
-    if (isFirstVisit === null) {
-      localStorage.setItem("isFirstVisit", "false");
-      setTimeout(function () {
-        splashScreen.style.opacity = "0";
+    if (splashScreen) { // 检查 splashScreen 是否存在
+      if (isFirstVisit === null) {
+        localStorage.setItem("isFirstVisit", "false");
         setTimeout(function () {
-          splashScreen.style.display = "none";
-        }, 1000);
-      }, 2500);
-    } else {
-      splashScreen.style.display = "none";
+          splashScreen.style.opacity = "0";
+          setTimeout(function () {
+            splashScreen.style.display = "none";
+          }, 1000);
+        }, 2500);
+      } else {
+        splashScreen.style.display = "none";
+      }
     }
   });
 </script>
