@@ -6,7 +6,8 @@
     "start": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "serve": "astro build && astro preview"
   },
   "dependencies": {
     "@astrojs/check": "^0.5.6",
