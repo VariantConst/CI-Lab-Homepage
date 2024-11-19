@@ -89,6 +89,8 @@ export async function fetchData() {
     const priorityOrder = [
       "TPAMI",
       "IJCV",
+      "TIP",
+      "TOG",
       "TCSVT",
       "NeurIPS",
       "MM",

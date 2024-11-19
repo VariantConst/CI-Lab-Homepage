@@ -27,7 +27,6 @@ const top_conferences = [
   "TPAMI",
   "IJCV",
   "TIP",
-  "TCSVT",
   "TOG",
   "CVPR",
   "ICCV",
