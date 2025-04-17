@@ -3,127 +3,87 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout>
-    <main class="min-h-screen">
-    <div class="container mx-auto px-4 py-16 max-w-5xl">
-      
-      <!-- Hero Section -->
-      <header class="mb-20">
-        <div class="flex flex-col items-center">
-          <h1 class="text-5xl md:text-6xl font-bold mb-6 gradient-text">计算摄像学</h1>
-          <div class="h-1 w-24 bg-gradient-to-r from-blue-500 to-purple-500 mb-8"></div>
-          <p class="text-xl md:text-2xl text-gray-600 mb-2 text-center">"计"承经典理论，解"算"深度模型</p>
-          <p class="text-xl md:text-2xl text-gray-600 text-center">"摄"取光影变化，成"像"智能时代</p>
-        </div>
-      </header>
-      
-      <!-- Book and QR Code Section -->
-      <section class="mb-20">
-        <div class="flex flex-col md:flex-row gap-8 items-center justify-center">
-          <div class="md:w-1/2 image-container">
-            <img src="/logo/original_book.png" alt="计算机视觉书籍封面" class="rounded-lg shadow-lg mx-auto w-64 h-64 md:w-96 md:h-96 object-cover">
-          </div>
-          <div class="md:w-1/2 flex flex-col items-center">
-            <div class="image-container mb-4">
-              <img src="/logo/qrcode.png" alt="二维码" class="rounded-lg shadow-lg w-48 h-48 md:w-64 md:h-64">
+    <main>
+        <div class="container mx-auto px-4 py-8 max-w-screen-md">
+            <header class="text-center mb-12">
+                <h1 class="text-4xl font-bold neon-text mb-8">计算摄像学</h1>
+                <p class="text-xl neon-text">"计"承经典理论，解"算"深度模型</p>
+                <p class="text-xl neon-text">"摄"取光影变化，成"像"智能时代</p>
+            </header>
+
+            <div class="flex flex-col md:flex-row gap-8 mb-12 items-center justify-center">
+                <div class="md:w-1/2 flex justify-center">
+                    <img src="/logo/original_book.png" alt="计算机视觉书籍封面" class="neon-border w-64 h-64 md:w-96 md:h-96">
+                </div>
+                <div class="md:w-1/2 flex flex-col justify-center items-center gap-y-8">
+                    <img src="/logo/qrcode.png" alt="二维码" class="neon-border w-64 h-64">
+                    <p class="text-center">扫码了解更多详情</p>
+                </div>
             </div>
-            <p class="text-gray-600 text-center">扫码了解更多详情</p>
-          </div>
+
+            <h2 class="text-2xl font-bold mb-8 neon-text text-center">专家推荐</h2>
+            <div class="p-6 rounded-lg shadow-lg mb-8">
+                <p class="mb-4 text-lg italic">
+                    计算摄像学是一个崭新的研究领域，其融合了计算机视觉、图形学、光学等学科领域，研究如何通过多模型计算与融合从而提供高质量、多维度的图像与视频信息输入与呈现手段。近些年来，深度学习技术的快速发展，也推动了计算摄像研究的进步。该书是国内第一本将二者充分结合的专著。作者将自己在北大讲授同名课程、从事相关研究的一线教学科研经历，整理成这本内容覆盖全面、图文描述生动、理论实践结合的书稿。强烈推荐给对相关领域研究人员和对此新兴领域感兴趣的读者!
+                </p>
+                <p class="text-right font-bold">
+                    ——高文，中国工程院院士、北京大学讲席教授、鹏城实验室主任
+                </p>
+            </div>
+            <div class="p-6 rounded-lg shadow-lg mb-8">
+                <p class="mb-4 text-lg italic">
+                    与传统胶片“相”机不同，数码“相”机通过对“像”的处理提升图“像”质量。计算摄“像”进一步以“算”为中心统筹设计摄像器件、视觉传感器和数字图像处理三个环节，大大拓展了视觉信息处理的可能性空间。对于这样一个重要技术方向，我国课程和教材建设还相对滞后，该书系统介绍了计算摄像的原理、方法和算法，涵盖了国内外最新研究进展，对我国这一方向的人才培养和科技创新均具重要意义。
+                </p>
+                <p class="text-right font-bold">
+                    ——黄铁军，北京大学教授、北京智源人工智能研究院理事长
+                </p>
+            </div>
+            <div class="p-6 rounded-lg shadow-lg mb-8">
+                <p class="mb-4 text-lg italic">
+                    人类所获取信息的90%来自视觉成像系统。在经典计算摄像的基础上，该书在成像过程的各个环节介绍了前沿的深度学习方法，并将理论与实践有机结合，为计算摄像学初学者的首选教材。
+                </p>
+                <p class="text-right font-bold">
+                    ——陈宝权，北京大学博雅特聘教授，智能学院副院长，IEEE Fellow
+                </p>
+            </div>
+            <div class="p-6 rounded-lg shadow-lg mb-8">
+                <p class="mb-4 text-lg italic">
+                    该书系统地将计算摄像学的理论模型、经典方法和深度学习方法进行了融合贯通，是一本基础与前沿兼顾、理论与实践并重的专业教材。
+                </p>
+                <p class="text-right font-bold">
+                    ——虞晶怡，上海科技大学教授，副教务长、信息学院执行院长，IEEE Fellow
+                </p>
+            </div>
+            <div class="p-6 rounded-lg shadow-lg mb-8">
+                <p class="mb-4 text-lg italic">
+                    计算摄像学根据计算机视觉的第一性原理，从光学、几何等基础原理分析视觉现象，并推导出相应的算法解决从图像增强到三维重建等重要问题。该书全面介绍了光场成像、光度视觉、超分辦率等众多技术，并紧跟最新研究动向，深入分析了神经形态相机、反射消除等前沿问题。这本书可以帮助读者深入理解视觉问题的物理本质，在大数据时代尤为难能可贵。
+                </p>
+                <p class="text-right font-bold">
+                    ——谭平，香港科技大学教授，原阿里达摩院XR实验室负责人
+                </p>
+            </div>
+
+            <h2 class="text-2xl font-bold mb-4 neon-text text-center">作者简介</h2>
+            <div class="flex flex-col items-center mb-12">
+                <div class="w-full flex justify-center mb-4">
+                    <img src="https://images.ctfassets.net/yreyglvi5sud/6zt4jJ7F8QSmVk41OtbmP2/c8f75c6efa259ca504e061dcd6a3b0a0/boxin.jpg" alt="作者头像" class="w-64 rounded-md neon-border">
+                </div>
+                <div class="w-full">
+                    <h3 class="text-xl font-bold mb-2 text-center">施柏鑫</h3>
+                    <p class="mb-4">
+                        北京大学计算机学院多媒体信息处理全国重点实验室、视频与视觉技术国家工程研究中心研究员（长聘副教授）、博士生导师（“博雅青年学者”）；
+                        北京智源人工智能研究院青年科学家。2013年博士毕业于日本东京大学，曾先后在麻省理工学院媒体实验室、新加坡科技设计大学、南洋理工大学、日本国立产业技术综合研究所从事研究工作。研究方向为计算摄像学与计算机视觉，截至2024年2月共发表论文200余篇（包括TPAMI论文23篇，计算机视觉三大顶级会议论文82篇）。论文获评国际计算摄像会议（ICCP）2015年最佳论文提名（BestPaper -Runner Up）、国际计算机视觉会议（ICCV）
+                        2015年最佳论文候选（入选IJCV特刊Best Papersfrom ICCV 2015），2021年获得日本大川研究助成奖。科技创新2030—“新一代人工智能”重大项目首席科学家，国家自然科学基金重点项目负责人，国家级青年人才项目入选者。担任计算机视觉国际顶级期刊TPAMI、IJCV编委，顶级会议CVPR、ICCV、ECCV领域主席。IEEE、CCF、CSIG高级会员，APSIPA杰出讲者。更多信息请访问“相机智能”实验室主页：http://camera.pku.edu.cn
+                    </p>
+                </div>
+            </div>
+
+            <h2 class="text-2xl font-bold mb-4 neon-text text-center">内容简介</h2>
+            <div>
+                本书以图像的物理形成过程和相机获取数字图像的原理为支撑，介绍计算摄像学中的基本问题、模型、理论及其用传统最优化、信号处理方法的解决方案。
+                结合计算摄像问题近些年随着深度学习技术的发展带来的全新进展，介绍深度学习和计算摄像问题的结合与应用。深度学习作为目前视觉计算领域最热门的技术之一，在高层计算机视觉的目标检测、识别、分类等问题上带来了传统方法无法企及的性能突破深度学习技术在计算摄像领域也发挥了广泛而积极的作用。
+                通过适当的方法，将计算摄像经典问题在光学特性、物理过程和成像模型等方面的先验、约束与数据驱动方法强大的学习、建模能力进行优势互补，可以为众多计算摄像难题的求解提供全新的思路和手段。 本书每章内容最后均附带了精心设计的课程实践题目，兼顾了传统方法和深度学习方法，可以供计算摄像学及相关课程教师、研究人员在课堂教学、科研训练过程中参考使用。
+            </div>
         </div>
-      </section>
-      
-      <!-- Expert Recommendations -->
-      <section class="mb-20">
-        <h2 class="text-3xl font-bold mb-12 text-center gradient-text">专家推荐</h2>
-        <div class="grid md:grid-cols-2 gap-8">
-          <div class="quote-card bg-white rounded-lg shadow p-8 border-l-4 border-blue-500">
-            <p class="text-gray-600 italic mb-6 leading-relaxed">
-              计算摄像学是一个崭新的研究领域，其融合了计算机视觉、图形学、光学等学科领域，研究如何通过多模型计算与融合从而提供高质量、多维度的图像与视频信息输入与呈现手段。近些年来，深度学习技术的快速发展，也推动了计算摄像研究的进步。该书是国内第一本将二者充分结合的专著。作者将自己在北大讲授同名课程、从事相关研究的一线教学科研经历，整理成这本内容覆盖全面、图文描述生动、理论实践结合的书稿。强烈推荐给对相关领域研究人员和对此新兴领域感兴趣的读者!
-            </p>
-            <p class="text-right font-bold text-gray-800">
-              ——高文，中国工程院院士、北京大学讲席教授、鹏城实验室主任
-            </p>
-          </div>
-          
-          <div class="quote-card bg-white rounded-lg shadow p-8 border-l-4 border-purple-500">
-            <p class="text-gray-600 italic mb-6 leading-relaxed">
-              与传统胶片"相"机不同，数码"相"机通过对"像"的处理提升图"像"质量。计算摄"像"进一步以"算"为中心统筹设计摄像器件、视觉传感器和数字图像处理三个环节，大大拓展了视觉信息处理的可能性空间。对于这样一个重要技术方向，我国课程和教材建设还相对滞后，该书系统介绍了计算摄像的原理、方法和算法，涵盖了国内外最新研究进展，对我国这一方向的人才培养和科技创新均具重要意义。
-            </p>
-            <p class="text-right font-bold text-gray-800">
-              ——黄铁军，北京大学教授、北京智源人工智能研究院理事长
-            </p>
-          </div>
-          
-          <div class="quote-card bg-white rounded-lg shadow p-8 border-l-4 border-indigo-500">
-            <p class="text-gray-600 italic mb-6 leading-relaxed">
-              人类所获取信息的90%来自视觉成像系统。在经典计算摄像的基础上，该书在成像过程的各个环节介绍了前沿的深度学习方法，并将理论与实践有机结合，为计算摄像学初学者的首选教材。
-            </p>
-            <p class="text-right font-bold text-gray-800">
-              ——陈宝权，北京大学博雅特聘教授，智能学院副院长，IEEE Fellow
-            </p>
-          </div>
-          
-          <div class="quote-card bg-white rounded-lg shadow p-8 border-l-4 border-blue-400">
-            <p class="text-gray-600 italic mb-6 leading-relaxed">
-              该书系统地将计算摄像学的理论模型、经典方法和深度学习方法进行了融合贯通，是一本基础与前沿兼顾、理论与实践并重的专业教材。
-            </p>
-            <p class="text-right font-bold text-gray-800">
-              ——虞晶怡，上海科技大学教授，副教务长、信息学院执行院长，IEEE Fellow
-            </p>
-          </div>
-          
-          <div class="quote-card bg-white rounded-lg shadow p-8 border-l-4 border-purple-400 md:col-span-2">
-            <p class="text-gray-600 italic mb-6 leading-relaxed">
-              计算摄像学根据计算机视觉的第一性原理，从光学、几何等基础原理分析视觉现象，并推导出相应的算法解决从图像增强到三维重建等重要问题。该书全面介绍了光场成像、光度视觉、超分辦率等众多技术，并紧跟最新研究动向，深入分析了神经形态相机、反射消除等前沿问题。这本书可以帮助读者深入理解视觉问题的物理本质，在大数据时代尤为难能可贵。
-            </p>
-            <p class="text-right font-bold text-gray-800">
-              ——谭平，香港科技大学教授，原阿里达摩院XR实验室负责人
-            </p>
-          </div>
-        </div>
-      </section>
-      
-      <!-- Author Info -->
-      <section class="mb-20">
-        <h2 class="text-3xl font-bold mb-12 text-center gradient-text">作者简介</h2>
-        <div class="flex flex-col md:flex-row gap-12 items-center md:items-start">
-          <div class="md:w-1/3 image-container">
-            <img src="https://images.ctfassets.net/yreyglvi5sud/6zt4jJ7F8QSmVk41OtbmP2/c8f75c6efa259ca504e061dcd6a3b0a0/boxin.jpg" alt="施柏鑫" class="rounded-lg shadow-lg w-64 h-64 object-cover">
-          </div>
-          <div class="md:w-2/3">
-            <h3 class="text-2xl font-bold mb-4 gradient-text">施柏鑫</h3>
-            <p class="text-gray-600 leading-relaxed">
-              北京大学计算机学院多媒体信息处理全国重点实验室、视频与视觉技术国家工程研究中心研究员（长聘副教授）、博士生导师（"博雅青年学者"）；
-              北京智源人工智能研究院青年科学家。2013年博士毕业于日本东京大学，曾先后在麻省理工学院媒体实验室、新加坡科技设计大学、南洋理工大学、日本国立产业技术综合研究所从事研究工作。研究方向为计算摄像学与计算机视觉，截至2024年2月共发表论文200余篇（包括TPAMI论文23篇，计算机视觉三大顶级会议论文82篇）。论文获评国际计算摄像会议（ICCP）2015年最佳论文提名（BestPaper -Runner Up）、国际计算机视觉会议（ICCV）
-              2015年最佳论文候选（入选IJCV特刊Best Papersfrom ICCV 2015），2021年获得日本大川研究助成奖。科技创新2030—"新一代人工智能"重大项目首席科学家，国家自然科学基金重点项目负责人，国家级青年人才项目入选者。担任计算机视觉国际顶级期刊TPAMI、IJCV编委，顶级会议CVPR、ICCV、ECCV领域主席。IEEE、CCF、CSIG高级会员，APSIPA杰出讲者。更多信息请访问"相机智能"实验室主页：<a href="http://camera.pku.edu.cn" class="text-blue-500 hover:text-blue-700 underline">http://camera.pku.edu.cn</a>
-            </p>
-          </div>
-        </div>
-      </section>
-      
-      <!-- Book Introduction -->
-      <section class="mb-20">
-        <h2 class="text-3xl font-bold mb-12 text-center gradient-text">内容简介</h2>
-        <div class="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-8 shadow-sm">
-          <p class="text-gray-700 leading-relaxed">
-            本书以图像的物理形成过程和相机获取数字图像的原理为支撑，介绍计算摄像学中的基本问题、模型、理论及其用传统最优化、信号处理方法的解决方案。
-          </p>
-          <div class="h-0.5 w-16 bg-gradient-to-r from-blue-300 to-purple-300 my-6 mx-auto"></div>
-          <p class="text-gray-700 leading-relaxed">
-            结合计算摄像问题近些年随着深度学习技术的发展带来的全新进展，介绍深度学习和计算摄像问题的结合与应用。深度学习作为目前视觉计算领域最热门的技术之一，在高层计算机视觉的目标检测、识别、分类等问题上带来了传统方法无法企及的性能突破深度学习技术在计算摄像领域也发挥了广泛而积极的作用。
-          </p>
-          <div class="h-0.5 w-16 bg-gradient-to-r from-blue-300 to-purple-300 my-6 mx-auto"></div>
-          <p class="text-gray-700 leading-relaxed">
-            通过适当的方法，将计算摄像经典问题在光学特性、物理过程和成像模型等方面的先验、约束与数据驱动方法强大的学习、建模能力进行优势互补，可以为众多计算摄像难题的求解提供全新的思路和手段。 本书每章内容最后均附带了精心设计的课程实践题目，兼顾了传统方法和深度学习方法，可以供计算摄像学及相关课程教师、研究人员在课堂教学、科研训练过程中参考使用。
-          </p>
-        </div>
-      </section>
-      
-      <!-- Footer -->
-      <footer class="text-center pt-8 pb-16">
-        <div class="h-px w-32 bg-gradient-to-r from-blue-300 to-purple-300 mx-auto mb-8"></div>
-        <p class="text-gray-500">© 2025 计算摄像学 | 北京大学计算机学院</p>
-      </footer>
-      
-    </div>
-  </main>
+    </main>
 </BaseLayout>
