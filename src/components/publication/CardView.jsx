@@ -32,7 +32,7 @@ function hashString(str) {
 }
 
 function tagIDtoColor(tagID) {
-  const hash = hashString(tagID);
+  const hash = hashString(tagID + tagID);
   const colorIndex = hash % Object.keys(colorVariants).length;
   const colorKey = Object.keys(colorVariants)[colorIndex];
   return colorVariants[colorKey];

@@ -17,6 +17,7 @@ const tag_id_to_str = {
   artifactsRemoval: "Artifacts Removal",
   neuromorphicCamera: "Neuromorphic Camera",
   multiModalEditing: "Multi-modal Editing",
+  robotics: "Robotics",
   other: "Other",
 };
 
@@ -26,6 +27,7 @@ const initialDisplayCount = 32;
 const top_conferences = [
   "TPAMI",
   "IJCV",
+  "AIS",
   "TIP",
   "TOG",
   "CVPR",
