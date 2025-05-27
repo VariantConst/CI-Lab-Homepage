@@ -126,6 +126,12 @@ const CardView = ({ papers, openModal, formatAuthors, tag_id_to_str }) => {
                       type="pdf"
                     />
                   )}
+                  {item.fields.supplementaryMaterial?.fields?.file && (
+                    <TagLink
+                      href={item.fields.supplementaryMaterial.fields.file.url}
+                      type="supplementary"
+                    />
+                  )}
                   {item.fields.projectPage && (
                     <TagLink href={item.fields.projectPage} type="project" />
                   )}

@@ -12,6 +12,13 @@ export async function fetchData() {
       abstract: EntryFieldTypes.Text;
       content: EntryFieldTypes.Text;
       date: EntryFieldTypes.Date;
+      supplementaryMaterial?: {
+        fields: {
+          file: {
+            url: string;
+          };
+        };
+      };
       thumbnail: {
         fields: {
           file: {

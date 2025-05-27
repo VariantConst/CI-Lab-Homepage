@@ -63,6 +63,14 @@ const ListView = ({ groupedEntries, formatAuthors }) => {
                             {"PDF"}
                           </a>
                         )}
+                        {item.fields.supplementaryMaterial?.fields?.file && (
+                          <a
+                            href={item.fields.supplementaryMaterial.fields.file.url}
+                            className={linkClassesWithUnderline}
+                          >
+                            {"Supplementary Material"}
+                          </a>
+                        )}
                         {item.fields.projectPage && (
                           <a
                             href={item.fields.projectPage}

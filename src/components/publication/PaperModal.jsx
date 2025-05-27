@@ -54,6 +54,12 @@ const PaperModal = ({ closeModal, selectedPaper }) => {
                     type="pdf"
                   />
                 )}
+                {selectedPaper?.fields?.supplementaryMaterial?.fields?.file && (
+                  <TagLink
+                    href={selectedPaper.fields.supplementaryMaterial.fields.file.url}
+                    type="supplementary"
+                  />
+                )}
                 {selectedPaper?.fields?.projectPage && (
                   <TagLink
                     href={selectedPaper.fields.projectPage}
