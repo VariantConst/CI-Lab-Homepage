@@ -210,31 +210,49 @@ function numberToWords(num: number) {
               style={type === "alumni" ? "display:none" : "display:flex"}
             >
               {data.items
+                .filter((item) => item.metadata?.tags[0]?.sys.id === type)
                 .sort((a, b) => {
-                  if (a.fields.year === b.fields.year) {
-                    return b.fields.priority - a.fields.priority;
+                  // year comparison (alumni: descending, others: ascending)
+                  const ay = Number(a.fields.year ?? 0);
+                  const by = Number(b.fields.year ?? 0);
+                  if (ay !== by) {
+                    return type === "alumni" ? by - ay : ay - by;
                   }
-                  return (
-                    (a.fields.year - b.fields.year) *
-                    (type === "alumni" ? -1 : 1)
-                  );
+
+                  // same year -> compare priorities
+                  const ap = Number(a.fields.priority ?? 0);
+                  const bp = Number(b.fields.priority ?? 0);
+
+                  if (type === "alumni") {
+                    // use priorityAlumni unless it's missing or equals 12 (sentinel -> fallback)
+                    const aPA = a.fields.priorityAlumni;
+                    const bPA = b.fields.priorityAlumni;
+                    const aUseFallback = aPA === undefined || Number(aPA) === 12;
+                    const bUseFallback = bPA === undefined || Number(bPA) === 12;
+
+                    const aEffective = aUseFallback ? ap : Number(aPA);
+                    const bEffective = bUseFallback ? bp : Number(bPA);
+
+                    if (aEffective !== bEffective) return bEffective - aEffective;
+                  } else {
+                    if (ap !== bp) return bp - ap; // non-alumni: priority desc
+                  }
+
+                  // final deterministic tiebreaker
+                  return String(a.fields.name ?? "").localeCompare(String(b.fields.name ?? ""));
                 })
-                .map((item) => {
-                  if (item.metadata?.tags[0]?.sys.id === type) {
-                    return (
-                      <div
-                        id={`people-${item.fields.name}`}
-                        class={type}
-                        data-fields={JSON.stringify(item.fields)}
-                      >
-                        <TeamCard
-                          data={item.fields}
-                          level={people_type_to_level[type as keyof typeof people_type_to_level]}
-                        />
-                      </div>
-                    );
-                  }
-                })}
+                .map((item) => (
+                  <div
+                    id={`people-${item.fields.name}`}
+                    class={type}
+                    data-fields={JSON.stringify(item.fields)}
+                  >
+                    <TeamCard
+                      data={item.fields}
+                      level={people_type_to_level[type as keyof typeof people_type_to_level]}
+                    />
+                  </div>
+                ))}
             </div>
           </div>
         </div>
