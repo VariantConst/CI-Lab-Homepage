@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import PaperSelect from "./ResearchHighlights";
 import PaperFilter from "./PaperFilter";
 import CardView from "./CardView";
@@ -50,7 +50,21 @@ const PapersDisplay = ({ entries }) => {
     entries.items.slice(0, initialDisplayCount)
   );
 
-  const [viewMode, setViewMode] = useState("list");
+  // Persist view mode in URL (?view=card|list) and localStorage to survive navigations
+  const initialView = useMemo(() => {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const v = params.get("view");
+      if (v === "card" || v === "list") return v;
+    } catch {}
+    try {
+      const saved = localStorage.getItem("publication:viewMode");
+      if (saved === "card" || saved === "list") return saved;
+    } catch {}
+    return "list";
+  }, []);
+
+  const [viewMode, setViewMode] = useState(initialView);
   const [selectedTag, setSelectedTag] = useState("");
   const [selectedYear, setSelectedYear] = useState("");
   const [selectedConference, setSelectedConference] = useState("");
@@ -101,6 +115,18 @@ const PapersDisplay = ({ entries }) => {
   const switchView = (mode) => {
     setViewMode(mode);
   };
+
+  // Keep URL and localStorage in sync when view changes
+  useEffect(() => {
+    try {
+      const url = new URL(window.location.href);
+      url.searchParams.set("view", viewMode);
+      window.history.replaceState({}, "", url);
+    } catch {}
+    try {
+      localStorage.setItem("publication:viewMode", viewMode);
+    } catch {}
+  }, [viewMode]);
 
   const clearSelection = () => {
     setSelectedTag("");

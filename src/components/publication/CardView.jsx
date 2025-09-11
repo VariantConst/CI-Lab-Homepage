@@ -1,6 +1,25 @@
 import { useState, useEffect } from "react";
 import TagLink from "./TagLink";
 
+// Resolve PDF URL: prefer a short text field `pdfLink` (if present and a valid URL),
+// otherwise fall back to the Contentful asset `fields.pdf.fields.file.url`.
+function resolvePdfUrl(fields) {
+  if (!fields) return undefined;
+  const maybe = fields.pdfLink;
+  if (typeof maybe === "string" && maybe.trim()) {
+    const raw = maybe.trim();
+    try {
+      // support protocol-relative URLs like //assets...
+      const safe = raw.startsWith("//") ? `https:${raw}` : raw;
+      const u = new URL(safe);
+      return u.href;
+    } catch (e) {
+      // invalid url -> fallthrough to asset
+    }
+  }
+  return fields.pdf?.fields?.file?.url;
+}
+
 const colorVariants = {
   red: "bg-red-200 text-red-800",
   orange: "bg-orange-200 text-orange-800",
@@ -67,7 +86,10 @@ const CardView = ({ papers, openModal, formatAuthors, tag_id_to_str }) => {
         className="grid grid-cols-1 lg:grid-cols-2 gap-12 pt-12 lg:max-w-screen-xl"
         id="paper-list"
       >
-        {papers.map((item, index) => (
+        {papers.map((item, index) => {
+          const pdfUrl = resolvePdfUrl(item.fields);
+
+          return (
           <div
             key={item.sys.id}
             className="card bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-800 rounded-2xl shadow-lg text-base md:text-lg flex flex-col"
@@ -96,12 +118,18 @@ const CardView = ({ papers, openModal, formatAuthors, tag_id_to_str }) => {
                 />
               </div>
               <h2 className="font-serif font-semibold mb-3 text-xl md:text-2xl">
-                <a
-                  href={item.fields.pdf?.fields?.file?.url}
-                  className="text-blue-600 hover:text-blue-500 transition-colors duration-300"
-                >
-                  [{item.fields.publisher + item.fields.identifier}]
-                </a>
+                {pdfUrl ? (
+                  <a
+                    href={pdfUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:text-blue-500 transition-colors duration-300"
+                  >
+                    [{item.fields.publisher + item.fields.identifier}]
+                  </a>
+                ) : (
+                  <span className="text-gray-800 dark:text-gray-200">[{item.fields.publisher + item.fields.identifier}]</span>
+                )}
                 &nbsp;{item.fields.title}
               </h2>
               <p className="mild font-serif">
@@ -120,9 +148,9 @@ const CardView = ({ papers, openModal, formatAuthors, tag_id_to_str }) => {
             <div className="px-8 pt-4 pb-6">
               <div className="flex flex-wrap justify-between items-center gap-y-2">
                 <div className="flex gap-x-2">
-                  {item.fields.pdf?.fields?.file && (
+                  {pdfUrl && (
                     <TagLink
-                      href={item.fields.pdf.fields.file.url}
+                      href={pdfUrl}
                       type="pdf"
                     />
                   )}
@@ -176,7 +204,8 @@ const CardView = ({ papers, openModal, formatAuthors, tag_id_to_str }) => {
               )}
             </div>
           </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );

@@ -1,5 +1,23 @@
 import TagLink from "./TagLink";
 
+// Resolve PDF URL: prefer a short text field `pdfLink` (if present and a valid URL),
+// otherwise fall back to the Contentful asset `fields.pdf.fields.file.url`.
+function resolvePdfUrl(fields) {
+  if (!fields) return undefined;
+  const maybe = fields.pdfLink;
+  if (typeof maybe === "string" && maybe.trim()) {
+    const raw = maybe.trim();
+    try {
+      const safe = raw.startsWith("//") ? `https:${raw}` : raw;
+      const u = new URL(safe);
+      return u.href;
+    } catch (e) {
+      // invalid -> fallback
+    }
+  }
+  return fields.pdf?.fields?.file?.url;
+}
+
 const PaperModal = ({ closeModal, selectedPaper }) => {
   return (
     <div
@@ -48,9 +66,9 @@ const PaperModal = ({ closeModal, selectedPaper }) => {
                 </p>
               </div>
               <div className="mt-6 space-x-2 sm:space-x-4 space-y-2">
-                {selectedPaper?.fields?.pdf?.fields?.file && (
+                {resolvePdfUrl(selectedPaper?.fields) && (
                   <TagLink
-                    href={selectedPaper.fields.pdf.fields.file.url}
+                    href={resolvePdfUrl(selectedPaper?.fields)}
                     type="pdf"
                   />
                 )}

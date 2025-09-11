@@ -89,6 +89,8 @@ const TagLink = ({ href, type }) => {
   return (
     <a
       href={href}
+  target="_blank"
+  rel="noopener noreferrer"
       className={`inline-flex items-center px-3 py-1 bg-gray-100 dark:bg-gray-700 mild rounded-md font-medium text-xs uppercase tracking-wider transition-colors duration-300 hover:bg-gray-200 dark:hover:bg-gray-700`}
     >
       {icon}
