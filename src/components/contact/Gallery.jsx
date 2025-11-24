@@ -2,42 +2,50 @@ import { useState, useEffect } from "react";
 import { useSwipeable } from "react-swipeable";
 
 const images = [
+
     {
     id: 1,
+    src: "https://images.ctfassets.net/yreyglvi5sud/2J94MBXYZemp5Vde4HV2TI/94f50343406afecef1fc2b3375abcd44/20251023ICCV%C3%A5__%C3%A5__%C3%A5__1.jpg",
+    date: "2025-10-23",
+  },
+
+  
+    {
+    id: 2,
     src: "https://images.ctfassets.net/yreyglvi5sud/4qanw8ARR9r8VBUPYMIpgl/02c6d487a295a3c4dd09bcc29f2c63cd/20250703%C3%A6__%C3%A7__%C3%A5__%C3%A6__%C3%A4__3.JPG",
     date: "2025-07-03",
   },
   {
-    id: 2,
+    id: 3,
     src: "https://images.ctfassets.net/yreyglvi5sud/NKrwRCT1QVBHfHqYUjRJx/c6ee5e979b7091a4437faade69f03373/20250114%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%9B%A2%E5%BB%BA.jpg",
     date: "2025-01-14",
   },
  
   {
-    id: 3,
+    id: 4,
     src: "https://images.ctfassets.net/yreyglvi5sud/3o5donN86NeCtF8Dpd4bqu/5d5774e2042b883f1098d384a068379c/WechatIMG802.jpg",
     date: "2024-09-10",
   },
   {
-    id: 4,
+    id: 5,
     src: "https://images.ctfassets.net/yreyglvi5sud/uIYiJua3ITEiK1kgwJrxz/daed4b396c5afb3685dec0d5c5fd7968/20240506VALSE.jpg",
     date: "2024-05-06",
   },
   {
-    id: 5,
+    id: 6,
     src: "https://images.ctfassets.net/yreyglvi5sud/X7a2cVY59HpmoHYUR0ggd/72044013592b61dc8cc397b4f394e06e/20240122_____.jpg",
     date: "2024-01-22",
   },
   {
-    id: 6,
+    id: 7,
     src: "https://images.ctfassets.net/yreyglvi5sud/6mRZOkMupPMW7ewJHvSCgg/0331f72699402fbd190bbc9bc79a954d/20230402_____.jpg",
     date: "2023-04-02",
   },
-  {
-    id: 7,
-    src: "https://images.ctfassets.net/yreyglvi5sud/359ORWc36SqxPQle3BECpi/50f0f93822c8d04acb40c8aab736d06e/20230611VALSE.jpg",
-    date: "2023-06-11",
-  },
+  // {
+  //   id: 7,
+  //   src: "https://images.ctfassets.net/yreyglvi5sud/359ORWc36SqxPQle3BECpi/50f0f93822c8d04acb40c8aab736d06e/20230611VALSE.jpg",
+  //   date: "2023-06-11",
+  // },
 
 ];
 
