@@ -18,6 +18,24 @@ function resolvePdfUrl(fields) {
   return fields.pdf?.fields?.file?.url;
 }
 
+// Resolve supplementary URL: prefer a short text field `suppPdfLink` (if present and a valid URL),
+// otherwise fall back to the Contentful asset `fields.supplementaryMaterial.fields.file.url`.
+function resolveSupplementaryUrl(fields) {
+  if (!fields) return undefined;
+  const maybe = fields.suppPdfLink;
+  if (typeof maybe === "string" && maybe.trim()) {
+    const raw = maybe.trim();
+    try {
+      const safe = raw.startsWith("//") ? `https:${raw}` : raw;
+      const u = new URL(safe);
+      return u.href;
+    } catch (e) {
+      // invalid -> fallback
+    }
+  }
+  return fields.supplementaryMaterial?.fields?.file?.url;
+}
+
 const PaperModal = ({ closeModal, selectedPaper }) => {
   return (
     <div
@@ -72,9 +90,9 @@ const PaperModal = ({ closeModal, selectedPaper }) => {
                     type="pdf"
                   />
                 )}
-                {selectedPaper?.fields?.supplementaryMaterial?.fields?.file && (
+                {resolveSupplementaryUrl(selectedPaper?.fields) && (
                   <TagLink
-                    href={selectedPaper.fields.supplementaryMaterial.fields.file.url}
+                    href={resolveSupplementaryUrl(selectedPaper?.fields)}
                     type="supplementary"
                   />
                 )}

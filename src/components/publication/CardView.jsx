@@ -20,6 +20,24 @@ function resolvePdfUrl(fields) {
   return fields.pdf?.fields?.file?.url;
 }
 
+// Resolve supplementary URL: prefer a short text field `suppPdfLink` (if present and a valid URL),
+// otherwise fall back to the Contentful asset `fields.supplementaryMaterial.fields.file.url`.
+function resolveSuppUrl(fields) {
+  if (!fields) return undefined;
+  const maybe = fields.suppPdfLink;
+  if (typeof maybe === "string" && maybe.trim()) {
+    const raw = maybe.trim();
+    try {
+      const safe = raw.startsWith("//") ? `https:${raw}` : raw;
+      const u = new URL(safe);
+      return u.href;
+    } catch (e) {
+      // invalid url -> fallthrough to asset
+    }
+  }
+  return fields.supplementaryMaterial?.fields?.file?.url;
+}
+
 const colorVariants = {
   red: "bg-red-200 text-red-800",
   orange: "bg-orange-200 text-orange-800",
@@ -88,6 +106,7 @@ const CardView = ({ papers, openModal, formatAuthors, tag_id_to_str }) => {
       >
         {papers.map((item, index) => {
           const pdfUrl = resolvePdfUrl(item.fields);
+          const suppUrl = resolveSuppUrl(item.fields);
 
           return (
           <div
@@ -154,9 +173,9 @@ const CardView = ({ papers, openModal, formatAuthors, tag_id_to_str }) => {
                       type="pdf"
                     />
                   )}
-                  {item.fields.supplementaryMaterial?.fields?.file && (
+                  {suppUrl && (
                     <TagLink
-                      href={item.fields.supplementaryMaterial.fields.file.url}
+                      href={suppUrl}
                       type="supplementary"
                     />
                   )}
