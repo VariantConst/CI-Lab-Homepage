@@ -1,42 +1,6 @@
 import { useState, useEffect } from "react";
 import TagLink from "./TagLink";
-
-// Resolve PDF URL: prefer a short text field `pdfLink` (if present and a valid URL),
-// otherwise fall back to the Contentful asset `fields.pdf.fields.file.url`.
-function resolvePdfUrl(fields) {
-  if (!fields) return undefined;
-  const maybe = fields.pdfLink;
-  if (typeof maybe === "string" && maybe.trim()) {
-    const raw = maybe.trim();
-    try {
-      // support protocol-relative URLs like //assets...
-      const safe = raw.startsWith("//") ? `https:${raw}` : raw;
-      const u = new URL(safe);
-      return u.href;
-    } catch (e) {
-      // invalid url -> fallthrough to asset
-    }
-  }
-  return fields.pdf?.fields?.file?.url;
-}
-
-// Resolve supplementary URL: prefer a short text field `suppPdfLink` (if present and a valid URL),
-// otherwise fall back to the Contentful asset `fields.supplementaryMaterial.fields.file.url`.
-function resolveSuppUrl(fields) {
-  if (!fields) return undefined;
-  const maybe = fields.suppPdfLink;
-  if (typeof maybe === "string" && maybe.trim()) {
-    const raw = maybe.trim();
-    try {
-      const safe = raw.startsWith("//") ? `https:${raw}` : raw;
-      const u = new URL(safe);
-      return u.href;
-    } catch (e) {
-      // invalid url -> fallthrough to asset
-    }
-  }
-  return fields.supplementaryMaterial?.fields?.file?.url;
-}
+import { resolvePdfUrl, resolveSuppUrl } from "../../lib/publicationLinks";
 
 const colorVariants = {
   red: "bg-red-200 text-red-800",
