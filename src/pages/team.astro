@@ -320,9 +320,11 @@ function numberToWords(num: number) {
         );
         toggleDisplayAndSetProperty("modal-homepage", data.homepage, "href");
 
-        document.getElementById("modal-image").src = data.image
-          ? data.image.fields.file.url
-          : "https://images.ctfassets.net/yreyglvi5sud/4usdd18KLnyLugCgzJU4Od/b6534d65f0f472b1904fbbc1e9ed7240/logo_icon.png";
+        document.getElementById("modal-image").src = data.imageLink
+          ? data.imageLink
+          : data.image
+            ? data.image.fields.file.url
+            : "https://images.ctfassets.net/yreyglvi5sud/4usdd18KLnyLugCgzJU4Od/b6534d65f0f472b1904fbbc1e9ed7240/logo_icon.png";
       });
     }
   });

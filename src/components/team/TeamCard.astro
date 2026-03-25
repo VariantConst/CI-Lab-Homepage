@@ -4,6 +4,10 @@ const { data, level } = Astro.props;
 const containerClasses = level
   ? `flex flex-col items-center p-0`
   : "mt-4 text-center";
+const resolvedImageSrc =
+  data.imageLink ||
+  data.image?.fields?.file?.url ||
+  "https://images.ctfassets.net/yreyglvi5sud/4usdd18KLnyLugCgzJU4Od/b6534d65f0f472b1904fbbc1e9ed7240/logo_icon.png";
 ---
 
 <div class={containerClasses}>
@@ -19,11 +23,7 @@ const containerClasses = level
             }}
           >
             <Image
-              src={
-                data.image
-                  ? data.image.fields.file.url
-                  : "https://images.ctfassets.net/yreyglvi5sud/4usdd18KLnyLugCgzJU4Od/b6534d65f0f472b1904fbbc1e9ed7240/logo_icon.png"
-              }
+              src={resolvedImageSrc}
               width={200}
               height={200}
               loading="eager"
