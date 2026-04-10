@@ -39,7 +39,7 @@ function tagIDtoColor(tagID) {
   return colorVariants[colorKey];
 }
 
-const CardView = ({ papers, openModal, formatAuthors, tag_id_to_str }) => {
+const CardView = ({ papers, openModal, renderAuthors, tag_id_to_str }) => {
   const [expandedIndex, setExpandedIndex] = useState(null);
   const [isSingleColumn, setIsSingleColumn] = useState(false);
 
@@ -116,7 +116,7 @@ const CardView = ({ papers, openModal, formatAuthors, tag_id_to_str }) => {
                 &nbsp;{item.fields.title}
               </h2>
               <p className="mild font-serif">
-                {formatAuthors(item.fields.author)}
+                {renderAuthors(item.fields.author)}
               </p>
               {isSingleColumn && (
                 <div

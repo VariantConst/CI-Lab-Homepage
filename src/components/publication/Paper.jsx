@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { Fragment, useEffect, useMemo, useState } from "react";
 import PaperSelect from "./ResearchHighlights";
 import PaperFilter from "./PaperFilter";
 import CardView from "./CardView";
@@ -6,10 +6,25 @@ import ListView from "./ListView";
 import PaperModal from "./PaperModal";
 import LoadMoreButton from "./LoadMoreButton";
 
-const formatAuthors = (authors) => {
-  return authors.length > 1
-    ? `${authors.slice(0, -1).join(", ")}, and ${authors[authors.length - 1]}`
-    : authors[0];
+const renderAuthors = (authors) => {
+  return authors.map((author, index) => {
+    let separator = "";
+    if (index > 0) {
+      separator =
+        index === authors.length - 1
+          ? authors.length === 2
+            ? " and "
+            : ", and "
+          : ", ";
+    }
+
+    return (
+      <Fragment key={`${author}-${index}`}>
+        {separator}
+        <span className="whitespace-nowrap">{author}</span>
+      </Fragment>
+    );
+  });
 };
 
 const tag_id_to_str = {
@@ -178,13 +193,13 @@ const PapersDisplay = ({ entries }) => {
         <CardView
           papers={papers}
           openModal={openModal}
-          formatAuthors={formatAuthors}
+          renderAuthors={renderAuthors}
           tag_id_to_str={tag_id_to_str}
         />
       ) : (
         <ListView
           groupedEntries={groupedEntries}
-          formatAuthors={formatAuthors}
+          renderAuthors={renderAuthors}
         />
       )}
       <LoadMoreButton
@@ -197,6 +212,7 @@ const PapersDisplay = ({ entries }) => {
           paper={selectedPaper}
           closeModal={closeModal}
           selectedPaper={selectedPaper}
+          renderAuthors={renderAuthors}
         />
       )}
     </div>

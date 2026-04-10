@@ -4,7 +4,7 @@ import {
   resolveSupplementaryUrl,
 } from "../../lib/publicationLinks";
 
-const PaperModal = ({ closeModal, selectedPaper }) => {
+const PaperModal = ({ closeModal, selectedPaper, renderAuthors }) => {
   return (
     <div
       id="modal-backdrop-paper"
@@ -33,7 +33,9 @@ const PaperModal = ({ closeModal, selectedPaper }) => {
                   id="paper-authors"
                   className="text-sm sm:text-base text-gray-600 dark:text-gray-400 font-serif mb-2"
                 >
-                  {selectedPaper?.fields?.author.join(", ")}
+                  {selectedPaper?.fields?.author
+                    ? renderAuthors(selectedPaper.fields.author)
+                    : null}
                 </p>
                 <p
                   id="paper-abstract"

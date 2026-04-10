@@ -1,7 +1,7 @@
 import { resolvePdfUrl, resolveSuppUrl } from "../../lib/publicationLinks";
 
 
-const ListView = ({ groupedEntries, formatAuthors }) => {
+const ListView = ({ groupedEntries, renderAuthors }) => {
   const linkClasses = "hover:text-gray-600 transition duration-200";
   const linkClassesWithUnderline = linkClasses + " underline";
   // const pdfUrl = resolvePdfUrl(item.fields);
@@ -58,7 +58,7 @@ const ListView = ({ groupedEntries, formatAuthors }) => {
                         ] {item.fields.title}
                       </h2>
                       <p className="text-gray-600 mb-4">
-                        {formatAuthors(item.fields.author)}
+                        {renderAuthors(item.fields.author)}
                       </p>
                       <div className="flex-shrink-0 space-x-4">
                         {resolvePdfUrl(item.fields) && (
