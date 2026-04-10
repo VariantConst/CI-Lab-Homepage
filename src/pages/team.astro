@@ -279,6 +279,27 @@ function numberToWords(num: number) {
     }
   }
 
+  function setModalName(name, nameCn) {
+    const element = document.getElementById("modal-name");
+    if (!element) return;
+
+    element.replaceChildren();
+
+    const nameSpan = document.createElement("span");
+    nameSpan.className = "whitespace-nowrap";
+    nameSpan.textContent = name || "";
+
+    const separatorSpan = document.createElement("span");
+    separatorSpan.setAttribute("aria-hidden", "true");
+    separatorSpan.textContent = " / ";
+
+    const nameCnSpan = document.createElement("span");
+    nameCnSpan.className = "whitespace-nowrap";
+    nameCnSpan.textContent = nameCn || "";
+
+    element.append(nameSpan, separatorSpan, nameCnSpan);
+  }
+
   // 为非 alumni 类型的团队成员卡片添加点击事件
   const peopleElements = document.querySelectorAll(
     '[id^="people-"]:not(.alumni)'
@@ -300,8 +321,7 @@ function numberToWords(num: number) {
         modal.style.display = "block";
         overlay.style.display = "block";
 
-        document.getElementById("modal-name").innerHTML =
-          `${data.name} / ${data.nameCn}`;
+        setModalName(data.name, data.nameCn);
 
         toggleDisplayAndSetProperty(
           "modal-educationCurrent",

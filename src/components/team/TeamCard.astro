@@ -45,10 +45,12 @@ const resolvedImageSrc =
     level && data.educationCurrent && data.educationNext ? (
       <div class="mt-6 text-center">
         <p
-          class="text-lg sm:text-xl font-semibold tracking-wide text-zinc-700 dark:text-zinc-300"
+          class="flex flex-wrap items-center justify-center gap-x-1 text-lg sm:text-xl font-semibold tracking-wide text-zinc-700 dark:text-zinc-300"
           id="data.name"
         >
-          {data.name} / {data.nameCn}
+          <span class="whitespace-nowrap">{data.name}</span>
+          <span aria-hidden="true">/</span>
+          <span class="whitespace-nowrap">{data.nameCn}</span>
         </p>
         <p class="mt-1 text-sm sm:text-base text-zinc-500 dark:text-zinc-400">
           {data.educationCurrent}
