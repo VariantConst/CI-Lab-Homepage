@@ -6,6 +6,9 @@ import react from "@astrojs/react";
 export default defineConfig({
   integrations: [tailwind(), react()],
   vite: {
+    preview: {
+      allowedHosts: ['camera.pku.edu.cn'],
+    },
     server: {
       hmr: {
         overlay: false,
