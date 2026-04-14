@@ -263,7 +263,7 @@ function numberToWords(num: number) {
 </BaseLayout>
 
 <!-- 处理团队成员卡片的点击事件 -->
-<script type="module">
+<script is:inline type="module">
   // 切换元素的显示状态并设置属性值
   function toggleDisplayAndSetProperty(elementId, content, propertyType) {
     const element = document.getElementById(elementId);
@@ -371,7 +371,7 @@ function numberToWords(num: number) {
 </script>
 
 <!-- 隐藏显示email -->
-<script type="module">
+<script is:inline type="module">
   function rot13(str) {
     return str.replace(/[a-zA-Z]/g, function (c) {
       return String.fromCharCode(
