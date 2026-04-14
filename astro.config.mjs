@@ -7,7 +7,7 @@ export default defineConfig({
   integrations: [tailwind(), react()],
   vite: {
     preview: {
-      allowedHosts: ['camera.pku.edu.cn'],
+      allowedHosts: ['camera.pku.edu.cn', 'ci.idm.pku.edu.cn'],
     },
     server: {
       hmr: {
