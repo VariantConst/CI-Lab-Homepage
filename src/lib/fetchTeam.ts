@@ -13,6 +13,7 @@ export async function fetchData() {
           educationPrevious: EntryFieldTypes.Text;
           educationNext: EntryFieldTypes.Text;
           priority: EntryFieldTypes.Integer;
+          priorityAlumni?: EntryFieldTypes.Integer;
           homepage: EntryFieldTypes.Text;
           image: EntryFieldTypes.Text;
           introduction: EntryFieldTypes.Text;
