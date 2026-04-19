@@ -45,6 +45,7 @@ const top_conferences = [
   "AIS",
   "TIP",
   "TOG",
+  "ACL",
   "CVPR",
   "ICCV",
   "ECCV",

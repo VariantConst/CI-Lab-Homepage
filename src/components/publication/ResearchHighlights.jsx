@@ -8,6 +8,7 @@ const top_conferences = [
   "IJCV",
   "TIP",
   "TOG",
+  "ACL",
   "CVPR",
   "ICCV",
   "ECCV",
@@ -76,7 +77,7 @@ const ResearchHighlights = ({ entries }) => {
           >
             DBLP
           </AnimatedLink>{" "}
-          for more updated information.
+          for the latest information.
         </p>
       ),
       icon: (

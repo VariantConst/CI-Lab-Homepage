@@ -104,6 +104,7 @@ export async function fetchData() {
       "MM",
       "ICCV",
       "ECCV",
+      "ACL",
       "CVPR",
       "AAAI",
     ];

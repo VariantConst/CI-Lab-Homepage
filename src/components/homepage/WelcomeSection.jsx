@@ -57,7 +57,7 @@ const WelcomeSection = () => {
             .
           </p>
           <p className="leading-relaxed">
-            We study and build Cameras powered with artificial Intelligence
+            We study and build cameras powered by artificial intelligence
             algorithms to benefit the next generation of AI through super-human
             visual sensing and computing. Please refer to our{" "}
             <AnimatedLink
