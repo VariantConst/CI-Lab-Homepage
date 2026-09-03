@@ -53,36 +53,47 @@ export async function fetchData() {
     skip += limit; // 更新 skip 的值，继续查询下一页
   }
 
+  // Return the exact Contentful fields that are missing from an entry. Keeping
+  // this check in one place ensures filtering and diagnostics cannot drift.
+  const getMissingFields = (entry: any): string[] => {
+    const fields = entry.fields ?? {};
+    const missingFields: string[] = [];
+
+    if (!fields.title) missingFields.push("title");
+    if (!fields.author) missingFields.push("author");
+    if (!fields.publisher) missingFields.push("publisher");
+    if (!fields.identifier) missingFields.push("identifier");
+    if (!fields.abstract) missingFields.push("abstract");
+    if (!fields.date) missingFields.push("date");
+    if (!fields.thumbnail?.fields?.file?.url) {
+      missingFields.push("thumbnail.fields.file.url");
+    }
+    if (!(entry.metadata?.tags?.length > 0)) {
+      missingFields.push("metadata.tags");
+    }
+
+    return missingFields;
+  };
+
   // 过滤掉不具有指定字段的条目
   const filteredItems = entries.items.filter(
-    (entry: any) =>
-      entry.fields.title &&
-      entry.fields.author &&
-      entry.fields.publisher &&
-      entry.fields.identifier &&
-      entry.fields.abstract &&
-      entry.fields.date &&
-      entry.fields.thumbnail?.fields?.file?.url &&
-      entry.metadata?.tags?.length > 0
+    (entry: any) => getMissingFields(entry).length === 0
   );
 
   // 异常值检测
   console.log(`论文总数：${filteredItems.length}`);
-  entries.items.forEach((entry: any) => {
-    if (
-      !entry.fields.title ||
-      !entry.fields.author ||
-      !entry.fields.publisher ||
-      !entry.fields.identifier ||
-      !entry.fields.abstract ||
-      !entry.fields.date ||
-      !entry.fields.thumbnail?.fields?.file?.url ||
-      !(entry.metadata?.tags?.length > 0)
-    ) {
-      console.log("以下条目缺失某些字段：");
-      console.log(entry.fields.title);
-    }
-  });
+  const invalidEntries = entries.items
+    .map((entry: any) => ({ entry, missingFields: getMissingFields(entry) }))
+    .filter(({ missingFields }: { missingFields: string[] }) => missingFields.length > 0);
+  if (invalidEntries.length > 0) {
+    console.log("以下条目缺失字段：");
+    invalidEntries.forEach(
+      ({ entry, missingFields }: { entry: any; missingFields: string[] }) => {
+        const title = entry.fields?.title || "（无标题）";
+        console.log(`- ${title}：缺失字段 ${missingFields.join("、")}`);
+      }
+    );
+  }
 
   filteredItems.sort((a: any, b: any) => {
     // 首先按年份降序排序
@@ -98,6 +109,7 @@ export async function fetchData() {
       "IJCV",
       "AIS",
       "TIP",
+      "TCI",
       "TOG",
       "TCSVT",
       "NeurIPS",

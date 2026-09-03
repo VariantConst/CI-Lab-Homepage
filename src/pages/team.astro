@@ -9,35 +9,45 @@ import TeamModal from "../components/team/TeamModal.astro";
 const data = await fetchData();
 
 // 计算不同类型成员的数量
-const num_reserchStuff = data.items.filter(
-  (item) =>
-    item.metadata.tags &&
-    item.metadata.tags[0] &&
-    item.metadata.tags[0].sys.id === "researchStuff"
-).length;
+// Faculty and staff are grouped by Contentful tags. Add the `faculty` or
+// `staff` tag to a team entry in Contentful to control its section.
+const hasTag = (item: (typeof data.items)[number], tag: string) =>
+  item.metadata?.tags?.some((itemTag) => itemTag.sys.id === tag) ?? false;
+
+const sortByPriority = (
+  a: (typeof data.items)[number],
+  b: (typeof data.items)[number]
+) => {
+  const ap = Number(a.fields.priority ?? 0);
+  const bp = Number(b.fields.priority ?? 0);
+  if (ap !== bp) return bp - ap;
+  return String(a.fields.name ?? "").localeCompare(String(b.fields.name ?? ""));
+};
+
+const facultyMembers = data.items
+  .filter((item) => hasTag(item, "faculty"))
+  .sort(sortByPriority);
+const staffMembers = data.items
+  .filter((item) => hasTag(item, "staff"))
+  .sort(sortByPriority);
+const num_staff = staffMembers.length;
+
 const num_phD = data.items.filter(
   (item) =>
-    item.metadata.tags &&
-    item.metadata.tags[0] &&
-    item.metadata.tags[0].sys.id === "phD"
+    hasTag(item, "phD") && !hasTag(item, "faculty") && !hasTag(item, "staff")
 ).length;
 const num_master = data.items.filter(
-  (item) =>
-    item.metadata.tags &&
-    item.metadata.tags[0] &&
-    item.metadata.tags[0].sys.id === "master"
+  (item) => hasTag(item, "master") && !hasTag(item, "faculty") && !hasTag(item, "staff")
 ).length;
 
 // 定义不同类型成员的标题和卡片大小
-const people_types = ["researchStuff", "phD", "master", "alumni"];
+const people_types = ["phD", "master", "alumni"];
 const people_type_to_title = {
-  researchStuff: "Research Staff",
   phD: "PhD Students",
   master: "Master Students",
   alumni: "Alumni",
 };
 const people_type_to_level = {
-  researchStuff: "large",
   phD: "medium",
   master: "medium",
   alumni: "small",
@@ -110,7 +120,7 @@ function numberToWords(num: number) {
           <p class="text-xl mild leading-relaxed text-left">
             PKU Camera Intelligence Lab currently has one faculty member,
             full-time members (including co-supervision and 2026 Fall incoming)
-            of {numberToWords(num_reserchStuff)} postdocs, {
+            of {numberToWords(num_staff)} postdocs, {
               numberToWords(num_phD)
             } doctoral students, {numberToWords(num_master)} master students, and
             several visiting students / undergraduate research interns as part-time
@@ -133,7 +143,7 @@ function numberToWords(num: number) {
         <div class="w-full lg:w-1/3 max-w-96">
           <div class="aspect-w-5 aspect-h-7 rounded-lg overflow-hidden">
             <img
-              src = "https://images.ctfassets.net/yreyglvi5sud/BnHYdJrIREYFQ2NP5rn6P/7de860c314b1f1a63d775aea064917bf/image001.jpg"
+              src="https://images.ctfassets.net/yreyglvi5sud/1svg4PhZ7aDMEHjA92k0yh/c5ba769ad3b5ab64d65e305577ffc0b9/boxin-shi-original.jpeg"
 
               alt="Boxin Shi"
               class="w-full h-full object-cover"
@@ -161,21 +171,66 @@ function numberToWords(num: number) {
           <div
             class="text-base md:text-lg text-gray-600 dark:text-gray-400 leading-relaxed"
           >
-            Boxin Shi received the BE degree from the Beijing University of Posts and Telecommunications, 
-            the ME degree from Peking University, and the PhD degree from the University of Tokyo, in 2007, 2010, 
-            and 2013. He is currently a Boya Young Fellow Associate Professor (with tenure) and Research Professor 
-            at Peking University, where he leads the Camera Intelligence Lab. Before joining PKU, he did research 
-            with MIT Media Lab, Singapore University of Technology and Design, Nanyang Technological University, 
-            National Institute of Advanced Industrial Science and Technology, from 2013 to 2017. His papers were 
-            awarded as Best Paper, Runners-Up at CVPR 2024, ICCP 2015 and selected as Best Paper candidate at 
-            ICCV 2015. He is an associate editor of TPAMI/IJCV and a lead area chair of CVPR/ICCV/ECCV. He is a 
-            Distinguished Lecturer of APSIPA, a Distinguished Member of CCF, and a Senior Member of IEEE.
+            Boxin Shi is currently a Boya Young Fellow Associate Professor (with tenure) and Research Professor at Peking University, where he leads the Camera Intelligence Lab (https://camera.pku.edu.cn). He received the PhD degree from the University of Tokyo and did postdoc research at MIT Media Lab. His research interests are computational photography, computer vision, generative AI, and embodied AI. His papers were awarded as Best Paper, Runners-Up at CVPR’24/ICCP’15 and selected as Best Paper, Candidate at CVPR’26/3DV’26/ICCV’15. He has received the Okawa Foundation Research Grant (2021) and IJCV Outstanding Editorial Board Members Award (2025). He serves as the Editor-in-Chief of IJCV, the associate editor of TPAMI, and (lead) area chairs of CVPR/ICCV/ECCV. He is a Distinguished Lecturer of APSIPA, a Distinguished Member of CCF, and a Senior Member of IEEE.
           </div>
         </div>
       </div>
     </div>
 
-    <!-- 渲染不同类型的团队成员 -->
+    <!-- Faculty and staff -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-4">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+        <section>
+          <h2 class="text-3xl sm:text-4xl md:text-5xl font-light text-center text-gray-800 dark:text-gray-200 mb-12">
+            Faculty
+          </h2>
+          <div class="flex flex-row flex-wrap gap-12 justify-center">
+            {facultyMembers.map((item) => {
+              const displayData = {
+                ...item.fields,
+              };
+              return (
+                <div
+                  id={`people-${item.fields.name}`}
+                  class="faculty"
+                  data-fields={JSON.stringify(displayData)}
+                >
+                  <TeamCard data={displayData} level="large" showPosition={true} />
+                </div>
+              );
+            })}
+          </div>
+        </section>
+
+        <section>
+          <h2 class="text-3xl sm:text-4xl md:text-5xl font-light text-center text-gray-800 dark:text-gray-200 mb-12">
+            Staff
+          </h2>
+          <div class="flex flex-row flex-wrap gap-12 justify-center">
+            {staffMembers.map((item) => {
+              const displayData = {
+                ...item.fields,
+              };
+              return (
+                <div
+                  id={`people-${item.fields.name}`}
+                  class="staff"
+                  data-fields={JSON.stringify(displayData)}
+                >
+                  <TeamCard
+                    data={displayData}
+                    level="large"
+                    showPosition={true}
+                  />
+                </div>
+              );
+            })}
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- 渲染其他类型的团队成员 -->
     {
       people_types.map((type) => (
         <div class="flex items-center justify-center">
@@ -211,7 +266,12 @@ function numberToWords(num: number) {
               style={type === "alumni" ? "display:none" : "display:flex"}
             >
               {data.items
-                .filter((item) => item.metadata?.tags[0]?.sys.id === type)
+                .filter(
+                  (item) =>
+                    hasTag(item, type) &&
+                    !hasTag(item, "faculty") &&
+                    !hasTag(item, "staff")
+                )
                 .sort((a, b) => {
                   // year comparison (alumni: descending, others: ascending)
                   const ay = Number(a.fields.year ?? 0);
@@ -251,6 +311,7 @@ function numberToWords(num: number) {
                     <TeamCard
                       data={item.fields}
                       level={people_type_to_level[type as keyof typeof people_type_to_level]}
+                      showEducationCurrent={type === "alumni"}
                     />
                   </div>
                 ))}

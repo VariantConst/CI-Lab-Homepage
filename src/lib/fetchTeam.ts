@@ -10,6 +10,7 @@ export async function fetchData() {
           nameCn: EntryFieldTypes.Text;
           year: EntryFieldTypes.Integer;
           educationCurrent: EntryFieldTypes.Text;
+          position?: EntryFieldTypes.Text;
           educationPrevious: EntryFieldTypes.Text;
           educationNext: EntryFieldTypes.Text;
           priority: EntryFieldTypes.Integer;

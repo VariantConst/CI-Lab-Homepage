@@ -68,13 +68,18 @@ const PapersDisplay = ({ entries }) => {
 
   // Persist view mode in URL (?view=card|list) and localStorage to survive navigations
   const initialView = useMemo(() => {
+    // This component is server-rendered by Astro. Do not touch browser-only
+    // globals while rendering on the server (Node exposes an experimental
+    // localStorage implementation that emits a warning when accessed).
+    if (typeof window === "undefined") return "list";
+
     try {
       const params = new URLSearchParams(window.location.search);
       const v = params.get("view");
       if (v === "card" || v === "list") return v;
     } catch {}
     try {
-      const saved = localStorage.getItem("publication:viewMode");
+      const saved = window.localStorage.getItem("publication:viewMode");
       if (saved === "card" || saved === "list") return saved;
     } catch {}
     return "list";

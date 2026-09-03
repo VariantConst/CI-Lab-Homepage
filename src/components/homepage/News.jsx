@@ -48,6 +48,21 @@ const NewsTimeline = ({ newsItems }) => {
                     {item.description}
                   </p>
                 )}
+                {item.links?.length > 0 && (
+                  <div className="mb-4 flex flex-wrap gap-x-4 gap-y-2 text-base">
+                    {item.links.map((link) => (
+                      <a
+                        key={link.url}
+                        href={link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-600 hover:text-blue-700 underline underline-offset-4 transition duration-300 ease-in-out dark:text-blue-400 dark:hover:text-blue-300"
+                      >
+                        {link.label}
+                      </a>
+                    ))}
+                  </div>
+                )}
                 {item.url && !item.descriptionLinkLabel && (
                   <a
                     href={item.url}

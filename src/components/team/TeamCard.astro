@@ -1,6 +1,11 @@
 ---
 import { Image } from "astro:assets";
-const { data, level } = Astro.props;
+const {
+  data,
+  level,
+  showEducationCurrent = false,
+  showPosition = false,
+} = Astro.props;
 const containerClasses = level
   ? `flex flex-col items-center p-0`
   : "mt-4 text-center";
@@ -42,7 +47,7 @@ const resolvedImageSrc =
     }
   </div>
   {
-    level && data.educationCurrent && data.educationNext ? (
+    level && showEducationCurrent && data.educationCurrent && data.educationNext ? (
       <div class="mt-6 text-center">
         <p
           class="flex flex-wrap items-center justify-center gap-x-1 text-lg sm:text-xl font-semibold tracking-wide text-zinc-700 dark:text-zinc-300"
@@ -61,15 +66,43 @@ const resolvedImageSrc =
       </div>
     ) : level ? (
       <div class="mt-6 text-center">
-        <p
-          class="text-lg sm:text-xl font-semibold tracking-wide text-zinc-700 dark:text-zinc-300"
-          id="data.name"
-        >
-          {data.name}
-        </p>
-        <p class="mt-1 text-xl sm:text-2xl font-semibold tracking-wide text-zinc-700 dark:text-zinc-300">
-          {data.nameCn}
-        </p>
+        {level === "small" ? (
+          <p
+            class="flex flex-wrap items-center justify-center gap-x-1 text-lg sm:text-xl font-semibold tracking-wide text-zinc-700 dark:text-zinc-300"
+            id="data.name"
+          >
+            <span class="whitespace-nowrap">{data.name}</span>
+            <span aria-hidden="true">/</span>
+            <span class="whitespace-nowrap">{data.nameCn}</span>
+          </p>
+        ) : (
+          <>
+            <p
+              class="text-lg sm:text-xl font-semibold tracking-wide text-zinc-700 dark:text-zinc-300"
+              id="data.name"
+            >
+              {data.name}
+            </p>
+            <p class="mt-1 text-xl sm:text-2xl font-semibold tracking-wide text-zinc-700 dark:text-zinc-300">
+              {data.nameCn}
+            </p>
+          </>
+        )}
+        {showPosition && data.position && (
+          <p class="mt-1 text-sm sm:text-base text-zinc-500 dark:text-zinc-400">
+            {data.position}
+          </p>
+        )}
+        {showEducationCurrent && data.educationCurrent && (
+          <p class="mt-1 text-sm sm:text-base text-zinc-500 dark:text-zinc-400">
+            {data.educationCurrent}
+          </p>
+        )}
+        {showEducationCurrent && data.educationNext && (
+          <p class="text-sm sm:text-base text-zinc-500 dark:text-zinc-400">
+            Next: {data.educationNext}
+          </p>
+        )}
       </div>
     ) : !level ? (
       <p>Unsupported level</p>
