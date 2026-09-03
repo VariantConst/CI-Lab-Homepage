@@ -21,7 +21,6 @@
     "lucide-react": "^0.400.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.30.6",
     "react-spring": "^9.7.3",
     "react-swipeable": "^7.0.1",
     "react-transition-group": "^4.4.5",
@@ -30,6 +29,21 @@
     "vite": "^8.2.2"
   },
   "packageManager": "yarn@4.12.0",
+  "resolutions": {
+    "@babel/core": "7.29.7",
+    "axios": "1.20.0",
+    "brace-expansion": "5.0.9",
+    "browserslist": "4.28.8",
+    "fast-uri": "3.1.6",
+    "form-data": "4.0.6",
+    "ip-address": "10.7.0",
+    "nanoid": "3.3.18",
+    "postcss": "8.5.26",
+    "postcss-selector-parser": "6.1.3",
+    "qs": "6.16.0",
+    "svgo": "4.1.0",
+    "tar": "7.5.22"
+  },
   "devDependencies": {
     "@babel/core": "^7.29.7",
     "@tailwindcss/aspect-ratio": "^0.4.2",
