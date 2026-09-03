@@ -120,14 +120,12 @@ function numberToWords(num: number) {
         </h2>
         <div class="mx-auto">
           <p class="text-xl mild leading-relaxed text-left">
-            PKU Camera Intelligence Lab currently has {numberToWords(num_faculty)}
-            faculty member{num_faculty === 1 ? "" : "s"},
-            full-time members (including co-supervision and 2027 Fall incoming)
-            of {numberToWords(num_staff)} postdocs, {
-              numberToWords(num_phD)
-            } doctoral students, {numberToWords(num_master)} master students, and
-            several visiting students / undergraduate research interns as part-time
-            members.
+            PKU Camera Intelligence Lab currently has {numberToWords(num_faculty)}{" "}
+            faculty member{num_faculty === 1 ? "" : "s"} and the following full-time
+            members (including co-supervision and 2027 Fall incoming): {numberToWords(num_staff)}{" "}
+            postdocs, {numberToWords(num_phD)} doctoral students, {numberToWords(num_master)}{" "}
+            master students, plus several visiting students / undergraduate research interns
+            as part-time members.
           </p>
         </div>
       </div>

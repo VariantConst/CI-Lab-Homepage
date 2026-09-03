@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useSwipeable } from "react-swipeable";
 
 const images = [
@@ -58,7 +58,6 @@ const images = [
 
 const ImageGallery = () => {
   const [selectedImageId, setSelectedImageId] = useState(1);
-  const [isLargeScreen, setIsLargeScreen] = useState(false);
   const handlers = useSwipeable({
     onSwipedLeft: () =>
       setSelectedImageId((prevId) =>
@@ -86,27 +85,13 @@ const ImageGallery = () => {
     }
   };
 
-  useEffect(() => {
-    const handleResize = () => {
-      setIsLargeScreen(window.innerWidth >= 1536);
-    };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
   return (
     <div
       className="flex flex-col items-center space-y-8 w-full h-full border-none"
       tabIndex="0"
       onKeyDown={handleKeyDown}
     >
-      {isLargeScreen ? (
-        <div className="flex space-x-4 items-center justify-center">
+      <div className="hidden 2xl:flex space-x-4 items-center justify-center w-full">
           {images.map((image) => (
             <div
               key={image.id}
@@ -144,8 +129,8 @@ const ImageGallery = () => {
               )}
             </div>
           ))}
-        </div>
-      ) : (
+      </div>
+      <div className="2xl:hidden w-full">
         <div
           className="flex justify-center items-center mx-auto w-full md:w-4/5 overflow-hidden"
           {...handlers}
@@ -247,7 +232,7 @@ const ImageGallery = () => {
             </div>
           </div>
         </div>
-      )}
+      </div>
       <div className="text-center">
         <p
           className="text-3xl font-bold mb-2"
