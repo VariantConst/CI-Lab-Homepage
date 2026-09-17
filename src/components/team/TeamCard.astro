@@ -21,7 +21,7 @@ const resolvedImageSrc =
       level !== "small" && (
         <div class="w-full h-full">
           <div
-            class={`people-portrait group relative hover:cursor-pointer overflow-hidden flex items-center justify-center ${level === "large" ? "rounded-lg" : "rounded-full"} border border-gray-200 dark:border-zinc-700 shadow-lg dark:shadow-zinc-800 `}
+            class={`people-portrait relative hover:cursor-pointer overflow-hidden flex items-center justify-center ${level === "large" ? "rounded-lg" : "rounded-full"} border border-gray-200 dark:border-zinc-700 shadow-lg dark:shadow-zinc-800 `}
             style={{
               width: level === "large" ? "200px" : "150px",
               height: level === "large" ? "300px" : "150px",
@@ -33,12 +33,12 @@ const resolvedImageSrc =
               height={200}
               loading="eager"
               alt={data.name}
-              class={`w-full h-full object-cover transition duration-500 ease-in-out transform group-hover:-translate-y-1 group-hover:scale-110`}
+              class="people-portrait-image w-full h-full object-cover transition duration-500 ease-in-out transform"
               style={{ objectFit: "cover" }}
             />
             <div class="absolute inset-0 flex items-center justify-center">
               <div
-                class={`w-[80%] h-[80%] border-2 border-white/30 rounded-full scale-[1.2] opacity-0 group-hover:opacity-100 group-hover:scale-100 transition duration-500 ease-in-out`}
+                class="people-portrait-frame w-[80%] h-[80%] border-2 border-white/30 rounded-full scale-[1.2] opacity-0 transition duration-500 ease-in-out"
               />
             </div>
           </div>

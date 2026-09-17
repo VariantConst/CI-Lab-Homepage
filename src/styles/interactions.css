@@ -1,0 +1,12 @@
+.people-portrait:hover .people-portrait-image {
+  transform: translateY(-0.25rem) scale(1.1);
+}
+
+.people-portrait:hover .people-portrait-frame {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.animated-link:hover .animated-link-underline {
+  width: 100%;
+}
