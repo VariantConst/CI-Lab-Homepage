@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import TagLink from "./TagLink";
 import { resolvePdfUrl, resolveSuppUrl } from "../../lib/publicationLinks";
+import { formatPublicationLabel } from "../../lib/publicationLabel";
 
 const colorVariants = {
   red: "bg-red-200 text-red-800",
@@ -108,10 +109,10 @@ const CardView = ({ papers, openModal, renderAuthors, tag_id_to_str }) => {
                     rel="noopener noreferrer"
                     className="text-blue-600 hover:text-blue-500 transition-colors duration-300"
                   >
-                    [{item.fields.publisher + item.fields.identifier}]
+                    [{formatPublicationLabel(item.fields.publisher, item.fields.identifier)}]
                   </a>
                 ) : (
-                  <span className="text-gray-800 dark:text-gray-200">[{item.fields.publisher + item.fields.identifier}]</span>
+                  <span className="text-gray-800 dark:text-gray-200">[{formatPublicationLabel(item.fields.publisher, item.fields.identifier)}]</span>
                 )}
                 &nbsp;{item.fields.title}
               </h2>

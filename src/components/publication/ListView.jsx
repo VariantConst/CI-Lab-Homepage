@@ -1,4 +1,5 @@
 import { resolvePdfUrl, resolveSuppUrl } from "../../lib/publicationLinks";
+import { formatPublicationLabel } from "../../lib/publicationLabel";
 
 
 const ListView = ({ groupedEntries, renderAuthors }) => {
@@ -53,7 +54,7 @@ const ListView = ({ groupedEntries, renderAuthors }) => {
                             rel={resolvePdfUrl(item.fields) ? "noopener noreferrer" : undefined}
                             className={linkClasses}
                           >
-                            {item.fields.publisher + item.fields.identifier}
+                            {formatPublicationLabel(item.fields.publisher, item.fields.identifier)}
                           </a>
                         ] {item.fields.title}
                       </h2>

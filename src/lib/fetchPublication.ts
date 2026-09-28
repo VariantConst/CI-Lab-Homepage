@@ -107,12 +107,13 @@ export async function fetchData() {
     const priorityOrder = [
       "TPAMI",
       "IJCV",
+      "TOG",
       "AIS",
       "TIP",
       "TCI",
-      "TOG",
       "TCSVT",
       "NeurIPS",
+      "SIGGRAPH",
       "MM",
       "ICCV",
       "ECCV",
@@ -120,8 +121,16 @@ export async function fetchData() {
       "CVPR",
       "AAAI",
     ];
-    const priorityA = priorityOrder.indexOf(a.fields.publisher);
-    const priorityB = priorityOrder.indexOf(b.fields.publisher);
+    // Journal conference issues retain TOG priority; both SIGGRAPH venues
+    // share the conference slot immediately before MM.
+    const venueKey = (publisher: string) => {
+      const venue = publisher.trim();
+      if (/^(?:ACM\s+)?TOG\b/i.test(venue)) return "TOG";
+      if (/^SIGGRAPH(?:\s+Asia)?(?:\s|$)/i.test(venue)) return "SIGGRAPH";
+      return venue;
+    };
+    const priorityA = priorityOrder.indexOf(venueKey(a.fields.publisher));
+    const priorityB = priorityOrder.indexOf(venueKey(b.fields.publisher));
     if (priorityA !== priorityB) {
       if (priorityA === -1) return 1;
       if (priorityB === -1) return -1;
