@@ -1,4 +1,5 @@
 import AnimatedLink from "../utils/AnimatedLink.jsx";
+import { publicationVenue } from "../../lib/publicationVenue";
 
 const contactCardStyle =
   "flex flex-col justify-start items-center md:w-[calc(50%-1rem)] border-2 border-gray-300 dark:border-gray-500 rounded-lg p-8 transition-all duration-300 ease-in-out hover:shadow-lg hover:border-gray-400 dark:hover:border-gray-400";
@@ -24,7 +25,7 @@ const ResearchHighlights = ({ entries }) => {
 
   // 遍历 entries.items 来统计每个会议的论文数量
   entries.items.forEach((item) => {
-    const publisher = item.fields.publisher;
+    const publisher = publicationVenue(item.fields.publisher);
     if (conferenceCounts[publisher]) {
       conferenceCounts[publisher]++;
     } else {

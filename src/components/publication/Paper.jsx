@@ -5,6 +5,7 @@ import CardView from "./CardView";
 import ListView from "./ListView";
 import PaperModal from "./PaperModal";
 import LoadMoreButton from "./LoadMoreButton";
+import { publicationVenue } from "../../lib/publicationVenue";
 
 const renderAuthors = (authors) => {
   return authors.map((author, index) => {
@@ -105,8 +106,8 @@ const PapersDisplay = ({ entries }) => {
             : paper.fields.date.split("-")[0] === year)) &&
         (conference === "" ||
           (conference === "other"
-            ? !top_conferences.includes(paper.fields.publisher)
-            : paper.fields.publisher === conference))
+            ? !top_conferences.includes(publicationVenue(paper.fields.publisher))
+            : publicationVenue(paper.fields.publisher) === conference))
     );
 
     setFilteredTotal(filteredPapers.length);
@@ -124,8 +125,8 @@ const PapersDisplay = ({ entries }) => {
             : paper.fields.date.split("-")[0] === selectedYear)) &&
         (selectedConference === "" ||
           (selectedConference === "other"
-            ? !top_conferences.includes(paper.fields.publisher)
-            : paper.fields.publisher === selectedConference))
+            ? !top_conferences.includes(publicationVenue(paper.fields.publisher))
+            : publicationVenue(paper.fields.publisher) === selectedConference))
     );
     setFilteredTotal(nextPapers.length);
     if (papers.length < nextPapers.length) {
